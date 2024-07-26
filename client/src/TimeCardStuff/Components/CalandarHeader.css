@@ -1,0 +1,40 @@
+@media (min-width: 0px){
+    .labels  {
+        width: 14.285714285714285714285714285714%;
+    }
+  }
+@media (min-width: 576px){
+    .labels  {
+        width: 14.285714285714285714285714285714%;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .labels {
+      width: 14.285714285714285714285714285714%;
+    }
+  }
+  @media (min-width: 992px) {
+    .labels {
+      width: 14.285714285714285714285714285714%;
+    }
+  }
+  @media (min-width: 1200px) {
+    .labels {
+      width: 14.285714285714285714285714285714%;
+    }
+  }
+  
+  /**
+   *  The following is not really needed in this case
+   *  Only to demonstrate the usage of @media for large screens
+   */    
+   @media (min-width: 1400px) {
+    .labels {
+      width: 14.285714285714285714285714285714%;
+    }
+  }
+  
+  .moveMonth{
+    cursor: pointer;
+  }
