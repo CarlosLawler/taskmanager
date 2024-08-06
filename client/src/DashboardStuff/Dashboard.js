@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import "./../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import logo from './images/Simplex-Logo-Short-Transparent-without-background.png'
+import './../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import logo from './../images/Simplex-Logo-Short-Transparent-without-background.png'
 import axios from "axios";
 
 function Dashboard(){
