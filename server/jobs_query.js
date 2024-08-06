@@ -39,7 +39,7 @@ import sql from 'mssql';
         rowsAffected:[#of rows interacted with(read/manipulated)]
     }
 */
- export async function queryUsers(mode, email, password, firstName, lastName) {
+ export async function queryJobs(mode, jobName, quotedHours, calculatedHours) {
     const config = {
         user: 'CloudSAbd3408f6', // better stored in an app setting such as process.env.DB_USER
         password: 'Simplex123', // better stored in an app setting such as process.env.DB_PASSWORD
@@ -56,45 +56,44 @@ import sql from 'mssql';
     try {
         //connect to db
         var poolConnection = await sql.connect(config);
-        console.log('starting...')
+        console.log('starting Jobs...')
         switch(mode){
             
             //following CRUD operation ordering
-            case("0")://Create/Insert new entry
+            case("0")://Create---> Insert new entry
                 //to insert new email and password
-                var resultSet = await poolConnection.request().query('Insert INTO Users (Email, Password, FirstName,'
-                +' LastName) VALUES (\''+email+'\',\''+password+'\''+'\',\''+firstName+'\',\''+lastName+'\')');
+                var resultSet = await poolConnection.request().query('Insert INTO Jobs (JobName, QuotedHours)'
+                +' VALUES (\''+jobName+'\',\''+quotedHours+'\')');
             break;
 
             case("1")://Read
                 //read all entries of a specific email
-                var resultSet = await poolConnection.request().query('SELECT * FROM Users WHERE Email = \''
-                +email+'\'');
+                var resultSet = await poolConnection.request().query('SELECT * FROM Jobs WHERE Active = 1');
             break;
 
             case("2")://Update
                 //update to new passord for email
-                var resultSet = await poolConnection.request().query('UPDATE Users SET Password = \''
-                +password+'\' WHERE Email = \''+email+'\'');
+                var resultSet = await poolConnection.request().query('UPDATE Jobs SET QuotedHours = \''
+                +quotedHours+'\', CalculatedHours = \''+ calculatedHours +'\' WHERE JobName = \''+jobName+'\'');
             break;
 
             case("3")://Delete
                 //delete entry
-                var resultSet = await poolConnection.request().query('DELETE FROM Users WHERE Email = \''+email+'\'');
+                var resultSet = await poolConnection.request().query('DELETE FROM Jobs WHERE JobName = \''+jobName+'\'');
             break;
 
             case("4")://Read all
                 //read all entries of a specific email
-                var resultSet = await poolConnection.request().query('SELECT * FROM Users');
+                var resultSet = await poolConnection.request().query('SELECT * FROM Jobs');
             break;
 
             default://Trash
-                console.log('defaulting error');
+                console.log('defaulting error in Jobs');
             break;
         }
         // close connection only when we're certain application is finished
         poolConnection.close();
-        console.log("connect close");
+        console.log("connect close Jobs");
         return resultSet;
     } catch (err) {
         console.error(err.message);

@@ -39,7 +39,7 @@ import sql from 'mssql';
         rowsAffected:[#of rows interacted with(read/manipulated)]
     }
 */
- export async function queryUsers(mode, email, password, firstName, lastName) {
+ export async function queryUserTasks(mode, userID, jobID, taskID, startTime, endTime, report, category) {
     const config = {
         user: 'CloudSAbd3408f6', // better stored in an app setting such as process.env.DB_USER
         password: 'Simplex123', // better stored in an app setting such as process.env.DB_PASSWORD
@@ -56,45 +56,48 @@ import sql from 'mssql';
     try {
         //connect to db
         var poolConnection = await sql.connect(config);
-        console.log('starting...')
+        console.log('starting User Tasks...')
         switch(mode){
             
             //following CRUD operation ordering
             case("0")://Create/Insert new entry
                 //to insert new email and password
-                var resultSet = await poolConnection.request().query('Insert INTO Users (Email, Password, FirstName,'
-                +' LastName) VALUES (\''+email+'\',\''+password+'\''+'\',\''+firstName+'\',\''+lastName+'\')');
+                var resultSet = await poolConnection.request().query('Insert INTO UserTasks (UserID, JobID, TaskID, '
+                +'StartTime, EndTime, Report, Category) VALUES (\''+userID+'\',\''+jobID+'\',\''+taskID+'\',\''
+                +startTime+'\',\''+endTime+'\',\''+report+'\',\''+category+'\')');
             break;
 
             case("1")://Read
-                //read all entries of a specific email
-                var resultSet = await poolConnection.request().query('SELECT * FROM Users WHERE Email = \''
-                +email+'\'');
+                //read all entries of a user
+                var resultSet = await poolConnection.request().query('SELECT * FROM UserTasks WHERE UserID = \''
+                +userID+'\'');
             break;
-
+            //TODO:Update UserTasks
             case("2")://Update
                 //update to new passord for email
-                var resultSet = await poolConnection.request().query('UPDATE Users SET Password = \''
+                var resultSet = await poolConnection.request().query('UPDATE UserTasks SET Password = \''
                 +password+'\' WHERE Email = \''+email+'\'');
             break;
 
             case("3")://Delete
                 //delete entry
-                var resultSet = await poolConnection.request().query('DELETE FROM Users WHERE Email = \''+email+'\'');
+                var resultSet = await poolConnection.request().query('DELETE FROM UserTasks WHERE JobID = \''+jobID
+                    +'\' AND UserID = \''+ userID + '\' AND TaskID = \'' + taskID + '\' AND StartTime = \''+ startTime);
             break;
 
-            case("4")://Read all
+            case("4")://Read all for a specific Job
                 //read all entries of a specific email
-                var resultSet = await poolConnection.request().query('SELECT * FROM Users');
+                var resultSet = await poolConnection.request().query('SELECT * FROM UserTasks WHERE JobID = \''+
+                    jobID + '\'');
             break;
 
             default://Trash
-                console.log('defaulting error');
+                console.log('defaulting error in UserTasks');
             break;
         }
         // close connection only when we're certain application is finished
         poolConnection.close();
-        console.log("connect close");
+        console.log("connect close in UserTasks");
         return resultSet;
     } catch (err) {
         console.error(err.message);

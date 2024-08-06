@@ -1,6 +1,8 @@
-import {connectAndQueryUsers} from './user_query.js';
 import express from 'express';
 import cors from 'cors';
+import { queryUserTasks } from './user_tasks_query.js';
+import { queryJobs } from './jobs_query.js';
+import { queryUsers } from './user_query.js';
 
 //the combination of express and cors allows us to take advantage HTTP protocols
 const app = express();
@@ -55,7 +57,41 @@ app.get("/getData", async (req,res)=>{
     const lastName = req.query.lastName;
 
     //establishes connection and querys the database
-    const response = await connectAndQueryUsers(mode, email, password, firstName, lastName);
+    const response = await queryUsers(mode, email, password, firstName, lastName);
+    //send back the database response
+    res.send(response);
+})
+
+//getting job info
+app.get("/getJobsData", async (req,res)=>{
+    //gets parameters from request
+    const mode = req.query.mode;
+    const jobName = req.query.jobName;
+    const quotedHours = req.query.quotedHours;
+    const calculatedHours = req.query.calculatedHours;
+
+
+    //establishes connection and querys the database
+    const response = await queryJobs(mode, jobName, quotedHours, calculatedHours);
+    //send back the database response
+    res.send(response);
+})
+
+//getting User Entries info
+app.get("/getUserTasksData", async (req,res)=>{
+    //gets parameters from request
+    const mode = req.query.mode;
+    const userID = req.query.userID;
+    const jobID = req.query.jobID;
+    const taskID = req.query.taskID;
+    const startTime = req.query.startTime;
+    const endTime = req.query.endTime;
+    const report = req.query.report;
+    const category = req.query.category;
+
+    //establishes connection and querys the database
+    const response = await queryUserTasks(mode, userID,jobID,
+        taskID,startTime,endTime,report,category);
     //send back the database response
     res.send(response);
 })
