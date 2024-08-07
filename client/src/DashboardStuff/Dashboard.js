@@ -87,6 +87,8 @@ function Dashboard(){
                                         <p className="card-text">Something about task</p>
                                         <div className="progress bg-black">
                                         <div className="progress-bar progress-bar bg-danger text-black" role="progressbar"
+                                        // FIXME: get the progress bars to actually show progress
+                                        // FIXME: check for null QuotedHours and do something with it
                                         aria-valuenow={percentageString} aria-valuemin="0" aria-valuemax="100" style={{width:"40%"}}>
                                             {percentageString}%
                                         </div>
