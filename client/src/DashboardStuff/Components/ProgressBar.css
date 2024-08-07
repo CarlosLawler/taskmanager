@@ -1,0 +1,29 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.progress-container {
+    width: 80%;
+    background-color: #000; /* Uncompleted section background black */
+    border-radius: 25px;
+    overflow: hidden;
+    margin: 20px;
+    height: 30px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #8a0000; /* Completed section background red */
+    text-align: center;
+    line-height: 30px; /* Same as the height to center the text vertically */
+    border-radius: 25px 0 0 25px; /* Round the left side */
+    transition: width 0.25s ease-in-out;
+}

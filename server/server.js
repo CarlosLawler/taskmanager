@@ -3,6 +3,7 @@ import cors from 'cors';
 import { queryUserTasks } from './user_tasks_query.js';
 import { queryJobs } from './jobs_query.js';
 import { queryUsers } from './user_query.js';
+import { queryTasks } from './tasks_query.js';
 
 //the combination of express and cors allows us to take advantage HTTP protocols
 const app = express();
@@ -69,10 +70,28 @@ app.get("/getJobsData", async (req,res)=>{
     const jobName = req.query.jobName;
     const quotedHours = req.query.quotedHours;
     const calculatedHours = req.query.calculatedHours;
+    const active = req.query.active;
 
 
     //establishes connection and querys the database
-    const response = await queryJobs(mode, jobName, quotedHours, calculatedHours);
+    const response = await queryJobs(mode, jobName, quotedHours, calculatedHours, active);
+    //send back the database response
+    res.send(response);
+})
+
+//get tasks info
+app.get("/getTasksData", async (req,res)=>{
+    //gets parameters from request
+    const mode = req.query.mode;
+    const taskName = req.query.taskName;
+    const jobID = req.query.jobID;
+    const quotedHours = req.query.quotedHours;
+    const calculatedHours = req.query.calculatedHours;
+    const active = req.query.active;
+
+
+    //establishes connection and querys the database
+    const response = await queryTasks(mode, jobID, taskName, quotedHours, calculatedHours, active);
     //send back the database response
     res.send(response);
 })

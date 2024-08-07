@@ -9,4 +9,8 @@ const TimecardContext = React.createContext({
     setDaySelected: (day) => {},
     showJobModal: false,
     setShowJobModal: () => {},
+    jobSelected: null, 
+    setJobSelected: (job) => {},
+    taskSelected: null, 
+    setTaskSelected: (task) => {},
 });export default TimecardContext;
