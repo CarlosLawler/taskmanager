@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import * as FaIcons from "react-icons/fa6";
-import TimecardContext from "../Context/TimecardContext";
+import GlobalContext from "../../Context/GlobalContext";
 import dayjs from "dayjs";
 import './CalandarHeader.css'
 
 export default function CalandarHeader(){
-    const {monthIndex, setMonthIndex, setShowEventModal} = useContext(TimecardContext);
+    const {monthIndex, setMonthIndex, setShowEventModal} = useContext(GlobalContext);
 
     function goToToday(){
         setMonthIndex(dayjs().month());

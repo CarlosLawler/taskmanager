@@ -1,13 +1,13 @@
 import {getMonth} from './util';
 import React, { useContext, useEffect, useState } from 'react';
 import Month from './Components/Month'
-import TimecardContext from './Context/TimecardContext';
+import GlobalContext from '../Context/GlobalContext';
 import EventModal from './Components/EventModal';
 
 function Timecard(){
     console.table(getMonth());
     const [currentMonth, setCurrentMonth] = useState(getMonth());
-    const{monthIndex, showEventModal} = useContext(TimecardContext);
+    const{monthIndex, showEventModal} = useContext(GlobalContext);
     useEffect(()=>{
         setCurrentMonth(getMonth(monthIndex));
     },[monthIndex]);

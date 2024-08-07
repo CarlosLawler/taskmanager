@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import TimecardContextWrapper from './TimeCardStuff/Context/TimecardContextWrapper';
+import GlobalContextWrapper from './Context/GlobalContextWrapper';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <TimecardContextWrapper>
+    <GlobalContextWrapper>
       <App />
-    </TimecardContextWrapper>
+    </GlobalContextWrapper>
   </React.StrictMode>
 );
 

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import './../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import logo from './../images/Simplex-Logo-Short-Transparent-without-background.png'
 import axios from "axios";
+import GlobalContext from  './../Context/GlobalContext'
+import JobModal from "./Components/JobModal";
 
 function Dashboard(){
     const {name} = useParams();
     const [jobData, setJobData] = useState(['']);
+    const{showJobModal, setShowJobModal} = useContext(GlobalContext);
     useEffect(()=>{
         //should connect before use and make the second attempt not fail?
         axios.get("http://localhost:5000/getJobsData",{
@@ -28,6 +31,7 @@ function Dashboard(){
     
     return(
         <>
+        {showJobModal && <JobModal/>}
         <div className="home">
             <div className="container-fluid vh-100 pt-3 justify-content-center align-items-start bg-dark rounded">
                 <div className="row pt-2 justify-content-start align-items-start g-2">
@@ -79,7 +83,7 @@ function Dashboard(){
                         let percentageString = percentage + '';
 
                         return (
-                            <div key={job.JobID} className="col-6 col-md-4 col-lg-3 col-xl-2">
+                            <div key={job.JobID} className="col-6 col-md-4 col-lg-3 col-xl-2" onClick={() => setShowJobModal(true)}>
                                 <div className="card text-start text-black bg-secondary">
                                     <img className="card-img-top " src={logo} alt="Title" />
                                     <div className="card-body">

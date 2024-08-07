@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import TimecardContext from "../Context/TimecardContext";
+import GlobalContext from "../../Context/GlobalContext";
 import './EventModal.css';
 import 'bootstrap/js/dist/dropdown';
 import Flatpickr from "react-flatpickr";
@@ -8,7 +8,7 @@ import "flatpickr/dist/flatpickr.css";
 export default function EventModal(){
     const [task, setTask] = useState('');
     const [job, setJob] = useState('Jobs Availiable');
-    const {setShowEventModal} = useContext(TimecardContext);
+    const {setShowEventModal} = useContext(GlobalContext);
     const fpStart = useRef(null);
     const fpEnd = useRef(null);
     // useEffect(()=>{

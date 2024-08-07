@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import TimecardContext from "../Context/TimecardContext";
-import './EventModal.css';
+import GlobalContext from "./../../Context/GlobalContext";
+import './JobModal.css';
 import 'bootstrap/js/dist/dropdown';
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/flatpickr.css";
@@ -8,7 +8,7 @@ import "flatpickr/dist/flatpickr.css";
 export default function JobModal(){
     const [task, setTask] = useState('');
     const [job, setJob] = useState('Jobs Availiable');
-    const {setShowEventModal} = useContext(TimecardContext);
+    const {setShowJobModal} = useContext(GlobalContext);
     const fpStart = useRef(null);
     const fpEnd = useRef(null);
     // useEffect(()=>{
@@ -28,7 +28,7 @@ export default function JobModal(){
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">New Punch</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setShowEventModal(false)}></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setShowJobModal(false)}></button>
                         </div>
                         <div className="modal-body">
                             {/* //TODO: add options for dropdowns */}
@@ -106,7 +106,7 @@ export default function JobModal(){
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => setShowEventModal(false)}>Close</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => setShowJobModal(false)}>Close</button>
                             <button type="button" className="btn btn-primary">Save changes</button>
                         </div>
                     </div>
