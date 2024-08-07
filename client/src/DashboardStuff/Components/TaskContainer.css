@@ -1,39 +1,68 @@
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 .task-container {
-    background-color: #212529;
+    background-color: #333; /* Darker background */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    margin-top: 20px;
+    padding: 15px;
+    margin-top: 10px;
     color: #fff; /* Change text color to white for better contrast */
+    flex-grow: 1;
+    overflow: hidden; /* Prevent overflow */
+    height: 150px;
 }
 
-.task-container h3 {
-    font-size: 1.4em;
-    margin-bottom: 5px;
+.task-container h5 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
     color: #fff; /* Change text color to white */
 }
 
 .task-list {
     list-style: none;
     padding: 0;
+    max-height: 100px; /* Set a fixed height for the task list */
+    overflow-y: auto; /* Add vertical scroll if content overflows */
+    margin: 0; /* Remove default margin */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #888 #333; /* For Firefox */
+}
+
+/* For Webkit-based browsers */
+.task-list::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.task-list::-webkit-scrollbar-track {
+    background: #333; /* Uncompleted section background */
+    border-radius: 10px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+    background-color: #888; /* Completed section background */
+    border-radius: 10px;
+    border: 2px solid #333; /* Padding around thumb */
+}
+
+.task-list::-webkit-scrollbar-button {
+    display: none; /* Hide scrollbar arrows */
 }
 
 .task-item {
     background-color: #444; /* Slightly lighter dark background */
     border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 10px;
-    font-size: 1em;
+    padding: 5px;
+    font-size: 0.9em;
     color: #fff; /* Change text color to white */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    white-space: nowrap; /* Prevent text wrap */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    margin-bottom: 1px;;
 }
+
+.no-tasks {
+    text-align: center;
+    font-size: 0.9em;
+    color: #fff;
+}
+

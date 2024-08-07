@@ -62,7 +62,7 @@ function NavDash(){
     return(
         <>
         {/* <IconContext.Provider value={{color:'fff'}}> */}
-            <div className="row justify-content-between align-items-center g-2 mt-5" id="topBar">
+            <div className="row justify-content-between align-items-center g-2" id="topBar">
                 <div className="col-4 col-md-3 col-lg-2">
                     <div className="row justify-content-center align-items-center g-2">
                         <div className="col-3 offset-1">

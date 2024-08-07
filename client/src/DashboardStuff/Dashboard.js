@@ -7,11 +7,11 @@ import GlobalContext from  './../Context/GlobalContext'
 import JobModal from "./Components/JobModal";
 import TaskContainer from "./Components/TaskContainer";
 import ProgressBar from "./Components/ProgressBar";
-import './Components/Card.css'
 
 function Dashboard(){
     const {name} = useParams();
-    const [jobData, setJobData] = useState(['']);
+    const [jobData, setJobData] = useState(['loading data...', 'loading data...', 'loading data...']);
+    const constant = 0;
     const{showJobModal, setShowJobModal, setJobSelected} = useContext(GlobalContext);
     //FIXME: useEffect+ useState looping
     useEffect(()=>{
@@ -31,7 +31,7 @@ function Dashboard(){
             console.log(err);
             console.log(err.message);
         });
-    }, ['']);
+    }, [constant]);
 
     function openJobModal(job){
         setJobSelected(job);
@@ -68,7 +68,6 @@ function Dashboard(){
                                 calculatedHours += element.Hours;
                             });
 
-
                             axios.get("http://localhost:5000/getJobsData",{
                                 params: {
                                     mode: "2",                                               //Update Jobs with the JobName
@@ -88,19 +87,15 @@ function Dashboard(){
                         let percentageString = percentage + '';
 
                         return (
-                            <div key={job.JobID} className="col-6 col-md-4 col-lg-3 col-xl-2" onClick={() => openJobModal(job)}>
+                            <div key={job.JobID} className="col-6 col-md-4 col-lg-3" onClick={() => openJobModal(job)}>
                                 <div className="card text-start text-black bg-secondary">
-                                    <img className="card-img-top " src={logo} alt="Title" />
+                                    <img className="card-img-top" src={logo} alt="Title" />
                                     <div className="card-body">
                                         <h4 className="card-title">{job.JobName}</h4>
-                                        <p className="card-text">Open Tasks:</p>
-                                        <TaskContainer/>
+                                        <TaskContainer jobID = {job.JobID}/>
                                         <ProgressBar progress = {percentageString}/>
                                     </div>
                                 </div>
-                                        </div>
-                                        </div>
-                                    </div>
                             </div>
                         )
                     })}
