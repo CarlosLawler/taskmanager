@@ -68,18 +68,23 @@ function Dashboard(){
                             allHours.forEach((element) => {
                                 calculatedHours += element.Hours;
                             });
+                            if(job.CalculatedHours === calculatedHours){
+                                console.log("Job"+job.JobID+": equal");
+                            }else{
+                                console.log("Job"+job.JobID+": unequal");
+                                axios.get("http://localhost:5000/getJobsData",{
+                                    params: {
+                                        mode: "2",                                               //Update Jobs with the JobName
+                                        jobName: job.JobName,                                    //job to update
+                                        quotedHours: job.QuotedHours,                            //quoted hours to update to
+                                        calculatedHours: calculatedHours,                        //calculated hours to update to
+                                    }
+                                }).catch(err=> {
+                                    console.log(err)
+                                    console.log(err.message)
+                                });
+                            }
 
-                            axios.get("http://localhost:5000/getJobsData",{
-                                params: {
-                                    mode: "2",                                               //Update Jobs with the JobName
-                                    jobName: job.JobName,                                    //job to update
-                                    quotedHours: job.QuotedHours,                            //quoted hours to update to
-                                    calculatedHours: calculatedHours,                        //calculated hours to update to
-                                }
-                            }).catch(err=> {
-                                console.log(err)
-                                console.log(err.message)
-                            });
                         }).catch(err=> {
                             console.log(err)
                             console.log(err.message)
