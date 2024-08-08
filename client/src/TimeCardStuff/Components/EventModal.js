@@ -85,9 +85,6 @@ export default function EventModal(){
             return('Jobs Avaliable');
         }
     }
-    function closeModal(){
-        setShowEventModal(false);
-    }
     
     function handleSubmit(){
         axios.get("http://localhost:5000/getUserTasksData",{
@@ -106,7 +103,7 @@ export default function EventModal(){
             console.log(err);
             console.log(err.message);
         });
-        closeModal();
+        setShowEventModal(false);
     }
 
     return(
@@ -116,7 +113,8 @@ export default function EventModal(){
                     <div className="modal-content bg-dark text-light custom-modal-border">
                         <div className="modal-header">
                             <h5 className="modal-title">New Punch</h5>
-                            <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onClick={closeModal}></button>
+                            <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"
+                             onClick={()=>{setShowEventModal(false)}}></button>
                         </div>
                         <div className="modal-body">
                         <div className="row mb-3">
@@ -191,7 +189,7 @@ export default function EventModal(){
                         </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={()=>{setShowEventModal(false)}}>Close</button>
                             <button type="button" className="btn btn-custom" onClick={handleSubmit}>Submit</button>
                         </div>
                     </div>
