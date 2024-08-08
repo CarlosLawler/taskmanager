@@ -5,6 +5,8 @@ import 'bootstrap/js/dist/dropdown';
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/flatpickr.css";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import './../../../node_modules/flatpickr/dist/themes/airbnb.css'
 
 export default function JobModal(){
     const [isTaskSelected, setIsTaskSelected] = useState(false);
@@ -15,6 +17,7 @@ export default function JobModal(){
     const [report, setReport] = useState('');
     const [startDateTime, setStartDateTime] = useState('');
     const [endDateTime, setEndDateTime] = useState('');
+    const {id} = useParams();
 
 
     useEffect(()=>{
@@ -53,6 +56,33 @@ export default function JobModal(){
         setShowJobModal(false);
     }
 
+    // const mode = req.query.mode;
+    // const userID = req.query.userID;
+    // const jobID = req.query.jobID;
+    // const taskID = req.query.taskID;
+    // const startTime = req.query.startTime;
+    // const endTime = req.query.endTime;
+    // const report = req.query.report;
+    function handleSubmit(){
+        axios.get("http://localhost:5000/getUserTasksData",{
+            params: {
+                mode: "0",                                                  //insert the following userTask entry
+                userID: id,                                                 //UserID
+                jobID: jobSelected.JobID,                                   // selected jobID
+                taskID: taskSelected.TaskID,                                 // selected taskID
+                startTime: startDateTime.flatpickr.formatDate
+                (startDateTime.flatpickr.selectedDates[0],"Y-m-d H:i:S"),        //start date+time
+                endTime: endDateTime.flatpickr.formatDate
+                (endDateTime.flatpickr.selectedDates[0],"Y-m-d H:i:S"),            //end date+time
+                report: report,                                             //progress report user entry 
+            }
+        }).catch(err=> {
+            console.log(err);
+            console.log(err.message);
+        });
+        closeModal();
+    }
+
     return(
         <>
             <div id= "eventModal" className="modal" tabIndex="-1">
@@ -86,7 +116,7 @@ export default function JobModal(){
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         {taskData.map((task)=>{
                                             return(
-                                                <li key={task.taskID} className="dropdown-item" value="Action" 
+                                                <li key={task.TaskID} className="dropdown-item" value="Action" 
                                                 onClick={() => taskSelect(task)}>
                                                     {task.TaskName}</li>
                                             )
@@ -99,7 +129,7 @@ export default function JobModal(){
                                     Start:
                                 </h5>
                                 <div className="col-8 rounded">
-                                    <Flatpickr ref={fpStart} className="col-9"  data-enable-time/>
+                                    <Flatpickr ref={fpStart} className="col-9"  data-enable-time dateFormat = "Y-m-d H:i:S" onChange={() => setStartDateTime(fpStart.current)}/>
                                     <button className="col-3"
                                     type="button"
                                     onClick={() => {
@@ -116,7 +146,7 @@ export default function JobModal(){
                                     End:
                                 </h5>
                                 <div className="col-8 rounded">
-                                    <Flatpickr ref={fpEnd} className="col-9"  data-enable-time onChange={() => setEndDateTime() }/>
+                                    <Flatpickr ref={fpEnd} className="col-9"  data-enable-time onChange={() => setEndDateTime(fpEnd.current)}/>
                                     <button className="col-3"
                                     type="button"
                                     onClick={() => {
@@ -137,7 +167,7 @@ export default function JobModal(){
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
+                            <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
                         </div>
                     </div>
                 </div>

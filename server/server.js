@@ -106,11 +106,10 @@ app.get("/getUserTasksData", async (req,res)=>{
     const startTime = req.query.startTime;
     const endTime = req.query.endTime;
     const report = req.query.report;
-    const category = req.query.category;
 
     //establishes connection and querys the database
     const response = await queryUserTasks(mode, userID,jobID,
-        taskID,startTime,endTime,report,category);
+        taskID,startTime,endTime,report);
     //send back the database response
     res.send(response);
 })

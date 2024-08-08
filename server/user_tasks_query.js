@@ -39,7 +39,7 @@ import sql from 'mssql';
         rowsAffected:[#of rows interacted with(read/manipulated)]
     }
 */
- export async function queryUserTasks(mode, userID, jobID, taskID, startTime, endTime, report, category) {
+ export async function queryUserTasks(mode, userID, jobID, taskID, startTime, endTime, report) {
     const config = {
         user: 'CloudSAbd3408f6', // better stored in an app setting such as process.env.DB_USER
         password: 'Simplex123', // better stored in an app setting such as process.env.DB_PASSWORD
@@ -63,8 +63,8 @@ import sql from 'mssql';
             case("0")://Create/Insert new entry
                 //to insert new email and password
                 var resultSet = await poolConnection.request().query('Insert INTO UserTasks (UserID, JobID, TaskID, '
-                +'StartTime, EndTime, Report, Category) VALUES (\''+userID+'\',\''+jobID+'\',\''+taskID+'\',\''
-                +startTime+'\',\''+endTime+'\',\''+report+'\',\''+category+'\')');
+                +'StartTime, EndTime, Report) VALUES (\''+userID+'\',\''+jobID+'\',\''+taskID+'\',\''
+                +startTime+'\',\''+endTime+'\',\''+report+'\')');
             break;
 
             case("1")://Read

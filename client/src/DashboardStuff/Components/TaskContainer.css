@@ -7,7 +7,7 @@
     color: #fff; /* Change text color to white for better contrast */
     flex-grow: 1;
     overflow: hidden; /* Prevent overflow */
-    height: 125px;
+    height: 150px;
 }
 
 .task-container h5 {
@@ -57,7 +57,7 @@
     white-space: nowrap; /* Prevent text wrap */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Add ellipsis for overflow text */
-    margin-bottom: 1px;;
+    margin-bottom: 2px;
 }
 
 .no-tasks {
