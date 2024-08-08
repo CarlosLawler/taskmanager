@@ -1,40 +1,151 @@
-@media (min-width: 0px){
-    .labels  {
-        width: 14.285714285714285714285714285714%;
-    }
+/* CalendarHeader.css */
+
+/* Container for Day Labels */
+.day-labels {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Each Day Label */
+.day-label {
+  flex: 1;
+  max-width: 14.2857142857%; /* Same as day boxes */
+  text-align: center;
+  padding: 5px 0;
+  font-weight: bold;
+  color: #333333; /* Dark grey text */
+}
+
+/* Primary Button Styling */
+.btn-primary {
+  border-radius: 20px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  background-color: #8a0000; /* New button color */
+  color: white; /* Ensure text is visible */
+  border: none; /* Remove the default border */
+}
+
+.btn-primary:hover {
+  background-color: #6f0000; /* Darker shade for hover state */
+}
+
+/* Outlined Button Styling for "Today" */
+.btn-outline-primary {
+  border-radius: 20px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  background-color: transparent; /* Transparent background */
+  color: #8a0000; /* Text color matches the outline */
+  border: 2px solid #8a0000; /* Outline in the chosen color */
+}
+
+.btn-outline-primary:hover {
+  background-color: #8a0000; /* Fill with red color on hover */
+  color: white; /* Change text to white on hover */
+  border: 2px solid black; /* Change outline to black on hover */
+}
+
+/* Calendar date styling */
+.calendar-date {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  min-width: 70px;
+  font-weight: bold; /* Make the date bold */
+  color: #8a0000; /* Red color for the date */
+}
+
+/* Month navigation buttons */
+.moveMonth {
+  cursor: pointer;
+  font-size: 1rem;
+  color: #8a0000; /* New arrow color */
+  margin: 0 5px;
+}
+
+.moveMonth:hover {
+  color: #6f0000; /* Darker shade for hover state */
+}
+
+/* Calendar Header Container */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  gap: 5px;
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 576px) {
+  .btn-outline-primary, .btn-primary {
+    padding: 4px 10px;
+    font-size: 0.8rem;
   }
-@media (min-width: 576px){
-    .labels  {
-        width: 14.285714285714285714285714285714%;
-    }
+
+  .calendar-date {
+    font-size: 1rem;
+    min-width: 80px;
   }
-  
-  @media (min-width: 768px) {
-    .labels {
-      width: 14.285714285714285714285714285714%;
-    }
+
+  .moveMonth {
+    font-size: 1.2rem;
+    margin: 0 8px;
   }
-  @media (min-width: 992px) {
-    .labels {
-      width: 14.285714285714285714285714285714%;
-    }
+}
+
+@media (min-width: 768px) {
+  .btn-outline-primary, .btn-primary {
+    padding: 6px 12px;
+    font-size: 0.9rem;
   }
-  @media (min-width: 1200px) {
-    .labels {
-      width: 14.285714285714285714285714285714%;
-    }
+
+  .calendar-date {
+    font-size: 1.2rem;
+    min-width: 100px;
   }
-  
-  /**
-   *  The following is not really needed in this case
-   *  Only to demonstrate the usage of @media for large screens
-   */    
-   @media (min-width: 1400px) {
-    .labels {
-      width: 14.285714285714285714285714285714%;
-    }
+
+  .moveMonth {
+    font-size: 1.4rem;
+    margin: 0 10px;
   }
-  
-  .moveMonth{
-    cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  .btn-outline-primary, .btn-primary {
+    padding: 8px 14px;
+    font-size: 1rem;
   }
+
+  .calendar-date {
+    font-size: 1.4rem;
+    min-width: 120px;
+  }
+
+  .moveMonth {
+    font-size: 1.6rem;
+    margin: 0 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .btn-outline-primary, .btn-primary {
+    padding: 10px 16px;
+    font-size: 1.1rem;
+  }
+
+  .calendar-date {
+    font-size: 1.6rem;
+    min-width: 140px;
+  }
+
+  .moveMonth {
+    font-size: 1.8rem;
+    margin: 0 14px;
+  }
+}

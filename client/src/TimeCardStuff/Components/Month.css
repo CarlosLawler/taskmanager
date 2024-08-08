@@ -1,0 +1,30 @@
+/* Month.css */
+
+/* Calendar Container */
+.calendar-container {
+    background-color: #f7f7f7; /* Light grey background */
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 100%; /* Ensure it fills the container */
+  }
+  
+  /* Calendar Days Container */
+  .calendar-days {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  /* Calendar Row (Week) */
+  .calendar-row {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap; /* Ensure wrapping for small screens */
+  }
+  
+  /* Ensuring Each Day Box Aligns with Day Labels */
+  .calendar-row .day {
+    flex: 1 0 calc(100% / 7 - 2px); /* Ensures 7 days per row */
+    box-sizing: border-box;
+    max-width: calc(100% / 7 - 2px); /* Max width to ensure 7 days per row */
+  }

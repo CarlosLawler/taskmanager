@@ -1,58 +1,71 @@
-@media (min-width: 0px){
-    .seven-cols .col-xs-1,
-    .seven-cols .col-md-1,
-    .seven-cols .col-sm-1,
-    .seven-cols .col-lg-1  {
-        width: 14.285714285714285714285714285714%;
-    }
+/* Day.css */
+
+/* Day Box */
+.day {
+  background-color: #ffffff; /* White background */
+  border-radius: 8px;
+  padding: 5px;
+  margin: 1px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  flex: 1 0 calc(100% / 7 - 2px); /* Ensures each day takes equal width minus margins */
+  min-height: 40px; /* Base min-height for small screens */
+}
+
+/* Hover Effect */
+.day:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Slight lift on hover */
+}
+
+/* Day Header */
+.day-header {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333333; /* Dark grey text */
+  margin: 0;
+}
+
+/* Day Number */
+.day-number {
+  margin: 0;
+}
+
+/* Responsive adjustments for larger screens */
+@media (min-width: 576px) {
+  .day {
+    min-height: 50px; /* Slightly larger for medium screens */
   }
-@media (min-width: 576px){
-    .seven-cols .col-xs-1,
-    .seven-cols .col-md-1,
-    .seven-cols .col-sm-1,
-    .seven-cols .col-lg-1  {
-        width: 14.285714285714285714285714285714%;
-    }
+  .day-header {
+    font-size: 0.9rem;
   }
-  
-  @media (min-width: 768px) {
-    .seven-cols .col-xs-1,
-    .seven-cols .col-md-1,
-    .seven-cols .col-sm-1,
-    .seven-cols .col-lg-1 {
-      width: 14.285714285714285714285714285714%;
-    }
+}
+
+@media (min-width: 768px) {
+  .day {
+    min-height: 60px; /* Larger for larger screens */
   }
-  @media (min-width: 992px) {
-    .seven-cols .col-xs-1,
-    .seven-cols .col-md-1,
-    .seven-cols .col-sm-1,
-    .seven-cols .col-lg-1 {
-      width: 14.285714285714285714285714285714%;
-    }
+  .day-header {
+    font-size: 1rem;
   }
-  @media (min-width: 1200px) {
-    .seven-cols .col-xs-1,
-    .seven-cols .col-md-1,
-    .seven-cols .col-sm-1,
-    .seven-cols .col-lg-1 {
-      width: 14.285714285714285714285714285714%;
-    }
+}
+
+@media (min-width: 992px) {
+  .day {
+    min-height: 80px; /* Even larger for wider screens */
   }
-  
-  /**
-   *  The following is not really needed in this case
-   *  Only to demonstrate the usage of @media for large screens
-   */    
-  @media (min-width: 1400px) {
-    .seven-cols .col-xs-1,
-    .seven-cols .col-md-1,
-    .seven-cols .col-sm-1,
-    .seven-cols .col-lg-1 {
-      width: 14.285714285714285714285714285714%;
-    }
+  .day-header {
+    font-size: 1.1rem;
   }
-  .border{
-    height:15vw;
+}
+
+@media (min-width: 1200px) {
+  .day {
+    min-height: 100px; /* Maximum size for extra-large screens */
   }
-   
+  .day-header {
+    font-size: 1.2rem;
+  }
+}

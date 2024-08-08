@@ -1,14 +1,15 @@
 import React from "react";
 import './Day.css'
 
-export default function Day({day, rowIdx}){
+export default function Day({day}){
     return(
-        <div className="col-sm-1 border">
-            <header>
-                <p>
-                    {day.format("DD")}
-                </p>
-            </header>
-        </div>
+        <div className="day">
+      <header className="day-header">
+        <p className="day-number">
+          {day.format("DD")}
+        </p>
+      </header>
+      {/* Additional content for the day can be added here */}
+    </div>
     )
 }

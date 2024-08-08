@@ -27,26 +27,26 @@ export default function CalandarHeader(){
     ]
     return(
         <>
-            <header className="row justify-content-start align-items-center m-0 p-0">
-                <button className="col-2 m-3 p-0" onClick={goToToday}>
-                    Today
-                </button>
-                <FaIcons.FaAngleLeft className="col-2 p-0 moveMonth" onClick={previousMonth}/>
-                <h3 className="col-4">
-                    {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
-                </h3>
-                <FaIcons.FaAngleRight className="col-2 p-0 moveMonth" onClick={nextMonth}/>
-                <button className="col-2" onClick={() => setShowEventModal(true)}>Create</button>
-            </header>
-            <div className="d-flex row justify-content-start p-0 m-0">
-                {daysOfWeek.map((dayLabels)=>{
-                    return(
-                        <div key = {dayLabels}className="labels">
-                            {dayLabels}
-                        </div>
-                    )
-                })}
-            </div>
-        </>
+      <header className="d-flex justify-content-between align-items-center m-0 p-2 calendar-header">
+        <button className="btn btn-outline-primary btn-sm" onClick={goToToday}>
+          Today
+        </button>
+        <FaIcons.FaAngleLeft className="moveMonth" onClick={previousMonth} />
+        <h3 className="calendar-date m-0 text-center">
+          {dayjs(new Date(dayjs().year(), monthIndex)).format("MMM YYYY")}
+        </h3>
+        <FaIcons.FaAngleRight className="moveMonth" onClick={nextMonth} />
+        <button className="btn btn-primary btn-sm" onClick={() => setShowEventModal(true)}>
+          Create
+        </button>
+      </header>
+      <div className="day-labels">
+        {daysOfWeek.map((day, idx) => (
+          <div className="day-label" key={idx}>
+            {day}
+          </div>
+        ))}
+      </div>
+    </>
     )
 }
