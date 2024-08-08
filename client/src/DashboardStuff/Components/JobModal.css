@@ -9,3 +9,51 @@
     height: 20%;
 
 }
+/* Ensure the button text is truncated with ellipses */
+.text-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* Custom color for submit button */
+  .btn-custom {
+    background-color: #8a0000;
+    color: white;
+  }
+  
+  /* Adjust the modal for dark background and light text */
+  .modal-content.bg-dark {
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  .btn-close-white {
+    filter: invert(1);
+  }
+  
+  /* Custom background color for input fields and dropdowns */
+  .bg-custom {
+    background-color: #6c757d !important;
+    color: #fff !important;
+  }
+  
+  /* Align labels to the start */
+  .form-label {
+    text-align: start;
+  }
+  
+  /* Custom border for modal */
+  .custom-modal-border {
+    border: 2px solid #ddd;
+  }
+  /* Ensure dropdown menu items display full text */
+.full-width-dropdown .dropdown-item {
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+  }

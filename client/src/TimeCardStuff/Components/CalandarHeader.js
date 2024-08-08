@@ -41,7 +41,7 @@ export default function CalandarHeader(){
             <div className="d-flex row justify-content-start p-0 m-0">
                 {daysOfWeek.map((dayLabels)=>{
                     return(
-                        <div className="labels">
+                        <div key = {dayLabels}className="labels">
                             {dayLabels}
                         </div>
                     )

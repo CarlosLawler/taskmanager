@@ -19,8 +19,6 @@ export default function TaskContainer({jobID}){
                     }
                 }).then(res=> {                                         //process the data recieved by the backend response
                     setTaskData(res.data.recordset);
-                    console.log(res.data.recordset)
-                    console.log(taskData)
                 }).catch(err=> {
                     console.log(err);
                     console.log(err.message);

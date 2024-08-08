@@ -85,94 +85,77 @@ export default function JobModal(){
 
     return(
         <>
-            <div id= "eventModal" className="modal" tabIndex="-1">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title">New Punch</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={closeModal}></button>
-                        </div>
-                        <div className="modal-body">
-                            {/* //TODO: add options for dropdowns */}
-                            <div className="d-flex flex-row justify-content-between align-items-center m-0 p-0">
-                                <h5 className="col-4">
-                                    Job:
-                                </h5>
-                                <div className="dropdown col-8">
-
-                                    {/* //FIXME: here I want to use the variable jobs that is changed in setJobs as the text in the button */}
-                                    <h5>{jobSelected.JobName}</h5>
-                                </div>
-                            </div>
-                            <div className="d-flex flex-row justify-content-between align-items-center m-0 pt-2">
-                                <h5 className="col-4">
-                                    Task:
-                                </h5>
-                                <div className="dropdown col-8">
-                                    <button className="btn btn-secondary dropdown-toggle"
-                                        type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {getButtonText()}
-                                    </button>
-                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        {taskData.map((task)=>{
-                                            return(
-                                                <li key={task.TaskID} className="dropdown-item" value="Action" 
-                                                onClick={() => taskSelect(task)}>
-                                                    {task.TaskName}</li>
-                                            )
-                                        })}
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="d-flex flex-row justify-content-between align-items-center m-0 pt-2">
-                                <h5 className="col-4">
-                                    Start:
-                                </h5>
-                                <div className="col-8 rounded">
-                                    <Flatpickr ref={fpStart} className="col-9"  data-enable-time dateFormat = "Y-m-d H:i:S" onChange={() => setStartDateTime(fpStart.current)}/>
-                                    <button className="col-3"
-                                    type="button"
-                                    onClick={() => {
-                                        if (!fpStart?.current?.flatpickr) return;
-                                        fpStart.current.flatpickr.clear();
-                                    }}
-                                    >
-                                    Clear
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="d-flex flex-row justify-content-between align-items-center m-0 pt-2">
-                                <h5 className="col-4">
-                                    End:
-                                </h5>
-                                <div className="col-8 rounded">
-                                    <Flatpickr ref={fpEnd} className="col-9"  data-enable-time onChange={() => setEndDateTime(fpEnd.current)}/>
-                                    <button className="col-3"
-                                    type="button"
-                                    onClick={() => {
-                                        if (!fpEnd?.current?.flatpickr) return;
-                                        fpEnd.current.flatpickr.clear();
-                                    }}
-                                    >
-                                    Clear
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="d-flex flex-row justify-content-between align-items-center m-0 pt-2">
-                                <h5 className="col-4">
-                                    Report:
-                                </h5>
-                                <textarea className="col-8 rounded" value={report} placeholder="  Anything to report?" onChange={(e) => setReport(e.target.value)}/>
-                            </div>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-                        </div>
-                    </div>
-                </div>
+      <div id="eventModal" className="modal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content bg-dark text-light custom-modal-border">
+            <div className="modal-header">
+              <h5 className="modal-title">New Punch</h5>
+              <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onClick={closeModal}></button>
             </div>
-        </>
+            <div className="modal-body">
+              <div className="row mb-3">
+                <label className="col-4 form-label text-start">Job:</label>
+                <div className="col-8">
+                  <h5 className="m-0">{jobSelected.JobName}</h5>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label className="col-4 form-label text-start">Task:</label>
+                <div className="col-8">
+                  <div className="dropdown w-100">
+                    <button className="btn btn-secondary dropdown-toggle text-truncate bg-custom w-100"
+                      type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      {getButtonText()}
+                    </button>
+                    <ul className="dropdown-menu w-100 full-width-dropdown" aria-labelledby="dropdownMenuButton1">
+                        {taskData.map((task) => {
+
+                            return(
+                                <li key={task.TaskID} className="dropdown-item" value="Action"
+                                onClick={() => taskSelect(task)}>
+                                {task.TaskName}
+                                </li>
+                            )
+                        })}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label className="col-4 form-label text-start">Start:</label>
+                <div className="col-8 input-group">
+                  <Flatpickr ref={fpStart} className="form-control bg-custom" data-enable-time dateFormat="Y-m-d H:i:S" onChange={() => setStartDateTime(fpStart.current)} />
+                  <button className="btn btn-outline-secondary" type="button" onClick={() => {
+                    if (!fpStart?.current?.flatpickr) return;
+                    fpStart.current.flatpickr.clear();
+                  }}>Clear</button>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label className="col-4 form-label text-start">End:</label>
+                <div className="col-8 input-group">
+                  <Flatpickr ref={fpEnd} className="form-control bg-custom" data-enable-time onChange={() => setEndDateTime(fpEnd.current)} />
+                  <button className="btn btn-outline-secondary" type="button" onClick={() => {
+                    if (!fpEnd?.current?.flatpickr) return;
+                    fpEnd.current.flatpickr.clear();
+                  }}>Clear</button>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label className="col-4 form-label text-start">Report:</label>
+                <div className="col-8">
+                  <textarea className="form-control bg-custom text-light" value={report} placeholder="Anything to report?" onChange={(e) => setReport(e.target.value)} />
+                </div>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
+              <button type="button" className="btn btn-custom" onClick={handleSubmit}>Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
     )
 }
 

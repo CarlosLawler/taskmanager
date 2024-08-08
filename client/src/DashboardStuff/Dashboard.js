@@ -7,6 +7,7 @@ import GlobalContext from  './../Context/GlobalContext'
 import JobModal from "./Components/JobModal";
 import TaskContainer from "./Components/TaskContainer";
 import ProgressBar from "./Components/ProgressBar";
+import './Components/Card.css'
 
 function Dashboard(){
     const {name} = useParams();
@@ -91,7 +92,7 @@ function Dashboard(){
                                 <div className="card text-start text-black bg-secondary">
                                     <img className="card-img-top" src={logo} alt="Title" />
                                     <div className="card-body">
-                                        <h4 className="card-title overflow-hidden">{job.JobName}</h4>
+                                        <h4 className="card-title text-truncate">{job.JobName}</h4>
                                         <TaskContainer jobID = {job.JobID}/>
                                         <ProgressBar progress = {percentageString}/>
                                     </div>
