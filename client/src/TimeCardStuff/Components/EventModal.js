@@ -12,13 +12,15 @@ export default function EventModal(){
     const [isJobSelected, setIsJobSelected] = useState(false);
     const [jobData, setJobData] = useState(['loading data...', 'loading data...', 'loading data...']);
     const [taskData, setTaskData] = useState(['loading data...', 'loading data...', 'loading data...']);
-    const {setShowEventModal, jobSelected, setJobSelected, taskSelected, setTaskSelected} = useContext(GlobalContext);
+    const {setShowEventModal} = useContext(GlobalContext);
     const fpStart = useRef(null);
     const fpEnd = useRef(null);
     const [report, setReport] = useState('');
     const [startDateTime, setStartDateTime] = useState('');
     const [endDateTime, setEndDateTime] = useState('');
     const {id} = useParams();
+    const jobSelected = useRef(null);
+    const taskSelected = useRef(null);
 
     
     useEffect(()=>{
@@ -41,23 +43,23 @@ export default function EventModal(){
     
     function taskSelect(task){
         setIsTaskSelected(true);
-        setTaskSelected(task);
+        taskSelected.current = task;
     }
+    
     function jobSelect(job){
-        setJobSelected(job);
+        jobSelected.current = job
         setIsJobSelected(true);
-        setTaskSelected(null);
+        taskSelected.current = null;
         setIsTaskSelected(false);
         console.log(jobSelected);
         console.log(jobSelected.JobID);
 
         setTaskData(['loading data...'])
-        // setTimeout(()=>{
             axios.get("http://localhost:5000/getTasksData",{
                 params: {
                     mode: "1",                                      //Read all Where {active} and {jobID}
                     taskName: "",                                   //unnessesary
-                    jobID: jobSelected.JobID,                       // select from specific jobID
+                    jobID: jobSelected.current.JobID,                       // select from specific jobID
                     quotedHours: "",                                //unnessesary
                     calculatedHours: "",                            //unnessesary
                     active: 1,                                      //choses the active or inactive 
@@ -68,62 +70,43 @@ export default function EventModal(){
                 console.log(err);
                 console.log(err.message);
             });
-        // },3000)
     }
     function getTaskButtonText(){
         if(isTaskSelected){
-            return(taskSelected.TaskName);
+            return(taskSelected.current.TaskName);
         }else{
             return('Tasks Avaliable');
         }
     }
     function getJobButtonText(){
         if(isJobSelected){
-            return(jobSelected.JobName);
+            return(jobSelected.current.JobName);
         }else{
             return('Jobs Avaliable');
         }
     }
     function closeModal(){
-        setTaskSelected(null);
-        setJobSelected(null);
         setShowEventModal(false);
     }
-    //TODO: selecting job that resets task button text, task selected, and makes sure to rerun dropdowns
-
-    // const mode = req.query.mode;
-    // const userID = req.query.userID;
-    // const jobID = req.query.jobID;
-    // const taskID = req.query.taskID;
-    // const startTime = req.query.startTime;
-    // const endTime = req.query.endTime;
-    // const report = req.query.report;
+    
     function handleSubmit(){
-        // axios.get("http://localhost:5000/getUserTasksData",{
-        //     params: {
-        //         mode: "0",                                                  //insert the following userTask entry
-        //         userID: id,                                                 //UserID
-        //         jobID: jobSelected.JobID,                                   // selected jobID
-        //         taskID: taskSelected.TaskID,                                 // selected taskID
-        //         startTime: startDateTime.flatpickr.formatDate
-        //         (startDateTime.flatpickr.selectedDates[0],"Y-m-d H:i:S"),        //start date+time
-        //         endTime: endDateTime.flatpickr.formatDate
-        //         (endDateTime.flatpickr.selectedDates[0],"Y-m-d H:i:S"),            //end date+time
-        //         report: report,                                             //progress report user entry 
-        //     }
-        // }).catch(err=> {
-        //     console.log(err);
-        //     console.log(err.message);
-        // });
-        // closeModal();
-        console.log(id);
-        console.log(jobSelected.JobID);
-        console.log(taskSelected.TaskID);
-        console.log(startDateTime.flatpickr.formatDate
-            (startDateTime.flatpickr.selectedDates[0],"Y-m-d H:i:S"));
-        console.log(endDateTime.flatpickr.formatDate
-            (endDateTime.flatpickr.selectedDates[0],"Y-m-d H:i:S"));
-        console.log(report);
+        axios.get("http://localhost:5000/getUserTasksData",{
+            params: {
+                mode: "0",                                                  //insert the following userTask entry
+                userID: id,                                                 //UserID
+                jobID: jobSelected.current.JobID,                                   // selected jobID
+                taskID: taskSelected.current.TaskID,                                 // selected taskID
+                startTime: startDateTime.flatpickr.formatDate
+                (startDateTime.flatpickr.selectedDates[0],"Y-m-d H:i:S"),        //start date+time
+                endTime: endDateTime.flatpickr.formatDate
+                (endDateTime.flatpickr.selectedDates[0],"Y-m-d H:i:S"),            //end date+time
+                report: report,                                             //progress report user entry 
+            }
+        }).catch(err=> {
+            console.log(err);
+            console.log(err.message);
+        });
+        closeModal();
     }
 
     return(
