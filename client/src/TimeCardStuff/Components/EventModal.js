@@ -150,7 +150,7 @@ export default function EventModal(){
                                     {taskData.map((task) => {
                                         return(
                                             <li key={task.TaskID} className="dropdown-item" value="Action"
-                                            onClick={() => taskSelect(task)}>
+                                            onClick={() => {isJobSelected && taskSelect(task)}}>
                                             {task.TaskName}
                                             </li>
                                         )
