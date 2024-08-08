@@ -12,6 +12,10 @@ export default function JobModal(){
     const {setShowJobModal, jobSelected, setJobSelected, taskSelected, setTaskSelected} = useContext(GlobalContext);
     const fpStart = useRef(null);
     const fpEnd = useRef(null);
+    const [report, setReport] = useState('');
+    const [startDateTime, setStartDateTime] = useState('');
+    const [endDateTime, setEndDateTime] = useState('');
+
 
     useEffect(()=>{
         //should connect before use and make the second attempt not fail?
@@ -112,7 +116,7 @@ export default function JobModal(){
                                     End:
                                 </h5>
                                 <div className="col-8 rounded">
-                                    <Flatpickr ref={fpEnd} className="col-9"  data-enable-time/>
+                                    <Flatpickr ref={fpEnd} className="col-9"  data-enable-time onChange={() => setEndDateTime() }/>
                                     <button className="col-3"
                                     type="button"
                                     onClick={() => {
@@ -128,7 +132,7 @@ export default function JobModal(){
                                 <h5 className="col-4">
                                     Report:
                                 </h5>
-                                <textarea className="col-8 rounded" placeholder="  Anything to report?"/>
+                                <textarea className="col-8 rounded" value={report} placeholder="  Anything to report?" onChange={(e) => setReport(e.target.value)}/>
                             </div>
                         </div>
                         <div className="modal-footer">

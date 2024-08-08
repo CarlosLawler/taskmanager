@@ -7,7 +7,7 @@
     color: #fff; /* Change text color to white for better contrast */
     flex-grow: 1;
     overflow: hidden; /* Prevent overflow */
-    height: 150px;
+    height: 125px;
 }
 
 .task-container h5 {
