@@ -5,6 +5,7 @@ import GlobalContext from '../Context/GlobalContext';
 import EventModal from './Components/EventModal';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './Timecard.css';
 
 function Timecard(){
     const [currentMonth, setCurrentMonth] = useState(getMonth());
