@@ -1,0 +1,42 @@
+/* Timecard.css */
+
+.timecard {
+    height: 5px; /* Start with a height of 10px */
+    width: 100vw; /* Span the full width of the screen */
+    background-color: #343a40; /* Dark grey background */
+    position: relative; /* Position relative for further adjustments */
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    margin: 0; /* Ensure no margins around the container */
+}
+
+.calendar-wrapper {
+    background-color: #212529; /* Dark background for the rounded container */
+    border-radius: 8px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px; /* Padding inside the dark container */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute; /* Position absolute to allow it to be placed inside the 10px high container */
+    top: 10px; /* Position the content just below the initial 10px height */
+}
+
+.timecard-title {
+    margin-bottom: 20px; /* Space below the title */
+    font-size: 2rem;
+    color: #f8f9fa; /* White/secondary color */
+}
+
+/* Ensure the calendar takes the remaining space */
+.calendar-wrapper > * {
+    flex-grow: 1;
+    width: 100%;
+}
+
+body {
+    background-color: #343a40; /* Matches timecard background */
+}
