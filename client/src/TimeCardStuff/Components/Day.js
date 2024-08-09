@@ -19,7 +19,7 @@ export default function Day({day}){
       <div className="event-container">
         {dayEvents.map((evt, idx) => (
           <div key={idx} className="event">
-            {evt.JobName}
+            {evt.JobName}: {evt.TaskName}
           </div>
         ))}
       </div>

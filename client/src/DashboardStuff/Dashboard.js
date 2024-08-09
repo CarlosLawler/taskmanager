@@ -89,7 +89,8 @@ function Dashboard(){
                             console.log(err.message)
                         });
                         let percentage = job.CalculatedHours / job.QuotedHours * 100.0;
-                        let percentageString = percentage + '';
+                        let percentageString = percentage + ''
+                        {percentage<100 ? percentageString = percentage + '' : percentageString = '100'}
 
                         return (
                             <div key={job.JobID} className="col-6 col-md-4 col-lg-3" onClick={() => openJobModal(job)}>
