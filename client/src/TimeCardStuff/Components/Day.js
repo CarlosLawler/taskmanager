@@ -13,16 +13,16 @@ export default function Day({day}){
     },[userEvents])
     return(
         <div className="day">
-      <header className="day-header">
-        <p className="day-number">{day.format("DD")}</p>
-      </header>
-      <div className="event-container">
-        {dayEvents.map((evt, idx) => (
-          <div key={idx} className="event">
-            {evt.JobName}: {evt.TaskName}
-          </div>
-        ))}
-      </div>
-    </div>
+            <header className="day-header">
+                <p className="day-number">{day.format("DD")}</p>
+            </header>
+            <div className="event-container">
+                {dayEvents.map((evt, idx) => (
+                <div key={idx} className="event">
+                    {evt.JobName}: {evt.TaskName}
+                </div>
+                ))}
+            </div>
+        </div>
     )
 }
