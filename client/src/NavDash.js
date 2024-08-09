@@ -4,15 +4,17 @@ import "./../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import logo from './images/Simplex-Logo-Short-Transparent-without-background.png'
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import * as FaIcons from "react-icons/fa6";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import ".//Nav.css";
 //import { IconContext } from "react-icons";
+import GlobalContext from './Context/GlobalContext.js'
 
 function NavDash(){
 
     const navigate = useNavigate();
     const {name, id} = useParams();
     const [sidebar,setSidebar] = useState(false);
+    const {isAdmin, setIsAdmin} = useContext(GlobalContext);
 
     let menuRef = useRef();
     useEffect(() => {
@@ -32,6 +34,7 @@ function NavDash(){
 
     function logout(){
         console.log("opened logout");
+        setIsAdmin(false);
         navigate('/', {replace: true});
     }
     function returnToDash(){
@@ -42,11 +45,6 @@ function NavDash(){
     function returnToDashFromLogo(){
         console.log("opened home from logo");
         navigate('/dashboard/'+id+'/'+name);
-    }
-    function openNotifications(){
-        console.log("opened notifs");
-        navigate('/notification/'+id+'/'+name);
-        //FIXME: Do we use email service instead?
     }
     function openTimecard(){
         showSidebar();
@@ -83,9 +81,6 @@ function NavDash(){
                 <div className="col-4 col-md-3 col-lg-2">
                     <div className="row justify-content-center align-items-center g-2">
                         <div className="col-3 offset-2">
-                            {/* <Link className='menu-bars'> */}
-                                <FaIcons.FaRegBell className='menu-bars' onClick={openNotifications}/> 
-                            {/* </Link> */}
                         </div>
                         <div className="col-3 offset-1">
                             {/* <Link> */}
@@ -110,12 +105,14 @@ function NavDash(){
                             <span>Timecard</span>
                         {/* </Link> */}
                     </li>
-                    <li className='nav-text' onClick={openSettings}>
-                        {/* <Link> */}
-                            <FaIcons.FaGear/>
-                            <span>Settings</span>
-                        {/* </Link> */}
-                    </li>
+                    {isAdmin && 
+                        <li className='nav-text' onClick={openSettings}>
+                            {/* <Link> */}
+                                <FaIcons.FaGear/>
+                                <span>Settings</span>
+                            {/* </Link> */}
+                        </li>
+                    }
                 </ul>
             </nav>
             <Outlet/>

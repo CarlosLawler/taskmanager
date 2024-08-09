@@ -13,4 +13,6 @@ const TimecardContext = React.createContext({
     setJobSelected: (job) => {},
     userEvents: [], 
     setUserEvents: (allEvents) => [],
+    isAdmin: false,
+    setIsAdmin: () => {},
 });export default TimecardContext;

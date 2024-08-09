@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import axios from 'axios'
 import logo from './images/Simplex-Logo-Short-Transparent-without-background.png'
 import { useNavigate } from "react-router-dom";
+import GlobalContext from './Context/GlobalContext.js'
 
 function Login(){
 
@@ -11,6 +12,7 @@ function Login(){
     const [passwordInput, setPassword] = useState('');
     const [validEmail, setValidEmail] = useState(true);
     const [validPassword, setValidPassword] = useState(true);
+    const {setIsAdmin} = useContext(GlobalContext)
     const navigate = useNavigate();
     
     //FIXME: do something to improve connectivity at start of app
@@ -49,6 +51,10 @@ function Login(){
                 }else{
                     const id = res.data.recordset[0].UserID
                     const name = res.data.recordset[0].FirstName
+                    console.log(res.data.recordset[0].Role)
+                    if(res.data.recordset[0].Role == 'Admin'){
+                        setIsAdmin(true);
+                    }
                     navigate('/dashboard/'+id+'/'+name, {replace: true});
                 }
             }else{
