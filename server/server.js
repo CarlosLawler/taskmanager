@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { queryUserTasks } from './user_tasks_query.js';
+import { queryUserTasks, querySettings } from './user_tasks_query.js';
 import { queryJobs } from './jobs_query.js';
 import { queryUsers } from './user_query.js';
 import { queryTasks } from './tasks_query.js';
@@ -110,6 +110,15 @@ app.get("/getUserTasksData", async (req,res)=>{
     //establishes connection and querys the database
     const response = await queryUserTasks(mode, userID,jobID,
         taskID,startTime,endTime,report);
+    //send back the database response
+    res.send(response);
+})
+app.get("/settings", async (req,res)=>{
+    //gets parameters from request
+    const query = req.query.query;
+
+    //establishes connection and querys the database
+    const response = await querySettings(query);
     //send back the database response
     res.send(response);
 })

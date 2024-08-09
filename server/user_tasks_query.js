@@ -121,3 +121,30 @@ Prompts:(Im bad at sql)
 
 
 */
+export async function querySettings(query) {
+    const config = {
+        user: 'CloudSAbd3408f6', // better stored in an app setting such as process.env.DB_USER
+        password: 'Simplex123', // better stored in an app setting such as process.env.DB_PASSWORD
+        server: 'simplex-task-manager-server.database.windows.net', // better stored in an app setting such as process.env.DB_SERVER
+        port: 1433, // optional, defaults to 1433, better stored in an app setting such as process.env.DB_PORT
+        database: 'TaskManagerDB', // better stored in an app setting such as process.env.DB_NAME
+        authentication: {
+            type: 'default'
+        },
+        options: {
+            encrypt: true
+        }
+    }
+    try {
+        //connect to db
+        var poolConnection = await sql.connect(config);
+        console.log('starting settings...')
+                var resultSet = await poolConnection.request().query(query);
+        // close connection only when we're certain application is finished
+        poolConnection.close();
+        console.log("connect close in settings");
+        return resultSet;
+    } catch (err) {
+        console.error(err.message);
+    }
+}

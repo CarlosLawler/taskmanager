@@ -56,7 +56,7 @@ function NavDash(){
     function openSettings(){
         showSidebar();
         console.log("opened settings");
-        //TODO: impliment Settings
+        navigate('/settings/'+id+'/'+name);
     }
     return(
         <>
