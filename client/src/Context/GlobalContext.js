@@ -11,4 +11,6 @@ const TimecardContext = React.createContext({
     setShowJobModal: () => {},
     jobSelected: null, 
     setJobSelected: (job) => {},
+    userEvents: null, 
+    setUserEvents: (allEvents) => [],
 });export default TimecardContext;

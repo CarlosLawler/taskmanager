@@ -8,6 +8,7 @@ export default function TimecardContextWrapper(props){
     const [daySelected, setDaySelected] = useState(null);
     const [showJobModal, setShowJobModal] = useState(null);
     const [jobSelected, setJobSelected] = useState(null);
+    const [userEvents, setUserEvents] = useState(null);
 
 
 
@@ -15,7 +16,7 @@ export default function TimecardContextWrapper(props){
         <>
             <GlobalContext.Provider value={{monthIndex,setMonthIndex, showEventModal,
                  setShowEventModal, daySelected, setDaySelected, showJobModal, setShowJobModal,
-                 jobSelected, setJobSelected}}>
+                 jobSelected, setJobSelected, userEvents, setUserEvents}}>
                 {props.children}
             </GlobalContext.Provider>
         </>

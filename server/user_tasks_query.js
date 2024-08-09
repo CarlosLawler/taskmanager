@@ -69,8 +69,8 @@ import sql from 'mssql';
 
             case("1")://Read
                 //read all entries of a user
-                var resultSet = await poolConnection.request().query('SELECT * FROM UserTasks WHERE UserID = \''
-                +userID+'\'');
+                var resultSet = await poolConnection.request().query('SELECT JobID, TaskID, StartTime, EndTIme'+
+                    ' FROM UserTasks WHERE UserID = \''+userID+'\'');
             break;
             case("2")://Update
                 //update to new passord for email

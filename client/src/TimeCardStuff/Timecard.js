@@ -3,14 +3,35 @@ import React, { useContext, useEffect, useState } from 'react';
 import Month from './Components/Month'
 import GlobalContext from '../Context/GlobalContext';
 import EventModal from './Components/EventModal';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function Timecard(){
-    console.table(getMonth());
     const [currentMonth, setCurrentMonth] = useState(getMonth());
-    const{monthIndex, showEventModal} = useContext(GlobalContext);
+    const{monthIndex, showEventModal, setUserEvents} = useContext(GlobalContext);
+    const {id} = useParams();
     useEffect(()=>{
         setCurrentMonth(getMonth(monthIndex));
     },[monthIndex]);
+    useEffect(()=>{
+        axios.get("http://localhost:5000/getUserTasksData",{
+            params: {
+                mode: '1',
+                userID: id,
+                jobID: '',
+                taskID: '',
+                startTime: '',
+                endTime: '',
+                report: '',
+                
+            }
+        }).then(res=> {                                         //process the data recieved by the backend response
+            console.log(res.data.recordset);
+        }).catch(err=> {
+            console.log(err)
+            console.log(err.message)
+        });
+    },[''])
     return(
         <>
         <React.Fragment>
