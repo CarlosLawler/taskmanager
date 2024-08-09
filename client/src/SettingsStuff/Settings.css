@@ -1,0 +1,35 @@
+.popout {
+    position: absolute;
+    background-color: #f8f9fa;
+    color: #212529;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    width: 300px;
+    top: 100%;
+    left: 0;
+    transform: translateY(10px);
+    font-size: 14px;
+}
+
+.popout p {
+    margin: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.popout p:last-child {
+    border-bottom: none;
+}
+
+.list-group-item {
+    position: relative;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
