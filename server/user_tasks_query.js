@@ -69,8 +69,10 @@ import sql from 'mssql';
 
             case("1")://Read
                 //read all entries of a user
-                var resultSet = await poolConnection.request().query('SELECT JobID, TaskID, StartTime, EndTIme'+
-                    ' FROM UserTasks WHERE UserID = \''+userID+'\'');
+                var resultSet = await poolConnection.request().query('SELECT UserTasks.JobID, UserTasks.TaskID,'+
+                    ' UserTasks.StartTime, UserTasks.EndTime, Tasks.TaskName, Jobs.JobName FROM UserTasks'+
+                    ' INNER JOIN Tasks ON UserTasks.TaskID = Tasks.TaskID INNER JOIN Jobs ON UserTasks.JobID = Jobs.JobID WHERE'+
+                    ' UserTasks.UserID = \''+userID+'\'');
             break;
             case("2")://Update
                 //update to new passord for email

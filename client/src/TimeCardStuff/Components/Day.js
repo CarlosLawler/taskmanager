@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './Day.css'
+import GlobalContext from './../../Context/GlobalContext.js'
+import dayjs from "dayjs";
 
 export default function Day({day}){
+    const {userEvents} = useContext(GlobalContext);
+    const [dayEvents, setDayEvents] = useState([]);
+    useEffect(()=>{
+        const events = userEvents.filter(evt => dayjs(evt.StartTime).format("DD-MM-YY") === day.format("DD-MM-YY"));
+        setDayEvents(events);
+        console.log(dayEvents.length !== 0 ? day.format("DD-MM-YY")+": "+dayEvents: '');
+    },[userEvents])
     return(
         <div className="day">
       <header className="day-header">
-        <p className="day-number">
-          {day.format("DD")}
-        </p>
+        <p className="day-number">{day.format("DD")}</p>
       </header>
-      {/* Additional content for the day can be added here */}
+      <div className="event-container">
+        {dayEvents.map((evt, idx) => (
+          <div key={idx} className="event">
+            {evt.JobName}
+          </div>
+        ))}
+      </div>
     </div>
     )
 }

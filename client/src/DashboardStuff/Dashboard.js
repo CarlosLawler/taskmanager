@@ -70,9 +70,7 @@ function Dashboard(){
                                 calculatedHours += element.Hours;
                             });
                             if(job.CalculatedHours === calculatedHours){
-                                console.log("Job"+job.JobID+": equal");
                             }else{
-                                console.log("Job"+job.JobID+": unequal");
                                 axios.get("http://localhost:5000/getJobsData",{
                                     params: {
                                         mode: "2",                                               //Update Jobs with the JobName

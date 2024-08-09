@@ -27,6 +27,7 @@ function Timecard(){
             }
         }).then(res=> {                                         //process the data recieved by the backend response
             console.log(res.data.recordset);
+            setUserEvents(res.data.recordset);
         }).catch(err=> {
             console.log(err)
             console.log(err.message)
