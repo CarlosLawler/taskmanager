@@ -14,7 +14,6 @@ function Login(){
     const navigate = useNavigate();
     
     //FIXME: do something to improve connectivity at start of app
-    //FIXME: break connect and query into three parts, connect, query,close
     useEffect(()=>{
         //should connect before use and make the second attempt not fail?
         axios.get("http://localhost:5000/getData",{

@@ -72,11 +72,12 @@ import sql from 'mssql';
                 var resultSet = await poolConnection.request().query('SELECT * FROM UserTasks WHERE UserID = \''
                 +userID+'\'');
             break;
-            //TODO:Update UserTasks
             case("2")://Update
                 //update to new passord for email
-                var resultSet = await poolConnection.request().query('UPDATE UserTasks SET Password = \''
-                +password+'\' WHERE Email = \''+email+'\'');
+                var resultSet = await poolConnection.request().query('UPDATE UserTasks SET TaskID = \''
+                +taskID+'\', JobID = \''+jobID+'\', StartTime = \''+startTime+'\', EndTime = \''+endTime
+                +'\', Report = \''+report+'\' WHERE UserID = \''+userID+'\' AND TaskID = \''+taskID+'\' AND StartTime = \''
+                + startTime +'\'');
             break;
 
             case("3")://Delete

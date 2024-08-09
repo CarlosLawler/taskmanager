@@ -14,7 +14,8 @@ function Dashboard(){
     const [jobData, setJobData] = useState(['loading data...', 'loading data...', 'loading data...']);
     const constant = 0;
     const{showJobModal, setShowJobModal, setJobSelected} = useContext(GlobalContext);
-    //FIXME: useEffect+ useState looping
+    //FIXME: could use one query at start to populate all necessary data rather than multiple queries throughout. 
+    //it would update speed, and potentially cost (query costs)
     useEffect(()=>{
         //should connect before use and make the second attempt not fail?
         axios.get("http://localhost:5000/getJobsData",{

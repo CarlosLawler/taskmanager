@@ -52,7 +52,6 @@ function NavDash(){
         showSidebar();
         console.log("opened timecard");
         navigate('/timecard/'+id+'/'+name);
-        //TODO: impliment timecard
     }
     function openSettings(){
         showSidebar();
