@@ -18,7 +18,7 @@ function Login(){
     //FIXME: do something to improve connectivity at start of app
     useEffect(()=>{
         //should connect before use and make the second attempt not fail?
-        axios.get("http://localhost:5000/getData",{
+        axios.get("https://taskmanager-backend-9oui.onrender.com:5000/getData",{
             params: {
                 mode: "5",                                      //defaulter
                 email: "",                              //email inputted in form
@@ -36,7 +36,7 @@ function Login(){
         setValidPassword(true);
 
         //send the backend the neccessary data to run the query
-        axios.get("http://localhost:5000/getData",{
+        axios.get("https://taskmanager-backend-9oui.onrender.com:5000/getData",{
             params: {
                 mode: "1",                                      //read single user data
                 email: emailInput,                              //email inputted in form
