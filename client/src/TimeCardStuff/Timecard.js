@@ -40,7 +40,9 @@ function Timecard(){
                 {showEventModal && <EventModal/>}
                 <div className="timecard">
                     <div className="container-fluid vh-100 pt-3 justify-content-center align-items-start bg-dark rounded text-white">
-                        Timecard
+                        <h2 className="text-white">
+                            Timecard
+                        </h2>
                         <div className= 'container-fluid text-black bg-white rounded'>
                             <Month  month={currentMonth}/>
                         </div>

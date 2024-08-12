@@ -52,7 +52,7 @@ function Login(){
                     const id = res.data.recordset[0].UserID
                     const name = res.data.recordset[0].FirstName
                     console.log(res.data.recordset[0].Role)
-                    if(res.data.recordset[0].Role == 'Admin'){
+                    if(res.data.recordset[0].Role === 'Admin'){
                         setIsAdmin(true);
                     }
                     navigate('/dashboard/'+id+'/'+name, {replace: true});
