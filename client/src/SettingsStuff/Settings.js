@@ -25,7 +25,7 @@ const Settings = () => {
     };
 
     const handleSubmit = () => {
-        axios.get("http://localhost:5000/settings", {
+        axios.get("http://localhost:8000/settings", {
             params: {
                 query: inputText,
             }

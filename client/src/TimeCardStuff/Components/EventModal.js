@@ -24,7 +24,7 @@ export default function EventModal(){
 
     
     useEffect(()=>{
-        axios.get("http://localhost:5000/getJobsData",{
+        axios.get("http://localhost:8000/getJobsData",{
             params: {
                 mode: "1",                                      //Read all {active}
                 jobName: "",                                    //unnessesary
@@ -55,7 +55,7 @@ export default function EventModal(){
         console.log(jobSelected.JobID);
 
         setTaskData(['loading data...'])
-            axios.get("http://localhost:5000/getTasksData",{
+            axios.get("http://localhost:8000/getTasksData",{
                 params: {
                     mode: "1",                                      //Read all Where {active} and {jobID}
                     taskName: "",                                   //unnessesary
@@ -87,7 +87,7 @@ export default function EventModal(){
     }
     
     function handleSubmit(){
-        axios.get("http://localhost:5000/getUserTasksData",{
+        axios.get("http://localhost:8000/getUserTasksData",{
             params: {
                 mode: "0",                                                  //insert the following userTask entry
                 userID: id,                                                 //UserID

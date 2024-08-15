@@ -123,7 +123,7 @@ app.get("/settings", async (req,res)=>{
     res.send(response);
 })
 
-//starts listening at port 5000
-app.listen(5000, () => {
+//starts listening at port 8000
+app.listen(8000, () => {
     console.log("Listening...");
 })

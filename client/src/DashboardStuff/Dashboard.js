@@ -18,7 +18,7 @@ function Dashboard(){
     //it would update speed, and potentially cost (query costs)
     useEffect(()=>{
         //should connect before use and make the second attempt not fail?
-        axios.get("http://localhost:5000/getJobsData",{
+        axios.get("http://localhost:8000/getJobsData",{
             params: {
                 mode: "1",                                      //Read all {active}
                 jobName: "",                                    //unnessesary
@@ -52,7 +52,7 @@ function Dashboard(){
                 </div>
                 <div className="row pt-2 justify-content-start align-items-start g-2">
                     {jobData.map((job)=>{
-                        axios.get("http://localhost:5000/getUserTasksData",{
+                        axios.get("http://localhost:8000/getUserTasksData",{
                             params: {
                                 mode: '4',
                                 userID: '',
@@ -71,7 +71,7 @@ function Dashboard(){
                             });
                             if(job.CalculatedHours === calculatedHours){
                             }else{
-                                axios.get("http://localhost:5000/getJobsData",{
+                                axios.get("http://localhost:8000/getJobsData",{
                                     params: {
                                         mode: "2",                                               //Update Jobs with the JobName
                                         jobName: job.JobName,                                    //job to update
