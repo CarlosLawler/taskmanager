@@ -25,12 +25,11 @@ const Settings = () => {
     };
 
     const handleSubmit = () => {
-        axios.get("https://taskmanager-backend-9oui.onrender.com/settings", {
+        axios.get('https://taskmanager-backend-9oui.onrender.com/settings', {
             params: {
                 query: inputText,
             }
         }).then(res => {
-            console.log(res.data.recordset);
             if (res.data.recordset.length === 0) {
                 setErrorMessage('No records to display');
                 setQueryResult(null);
@@ -50,23 +49,23 @@ const Settings = () => {
 
     return (
         <>
-            <div className="settings">
-                <div className="container-fluid vh-100 pt-3 d-flex flex-column justify-content-start align-items-center bg-dark rounded text-white">
-                    <h1 className="mb-4">Settings</h1>
-                    <div className="alert alert-info w-50 text-center" role="alert">
+            <div className='settings'>
+                <div className='container-fluid vh-100 pt-3 d-flex flex-column justify-content-start align-items-center bg-dark rounded text-white'>
+                    <h1 className='mb-4'>Settings</h1>
+                    <div className='alert alert-info w-50 text-center' role='alert'>
                         Select a table from the list and feel free to query it.
                     </div>
-                    <div className="container-fluid bg-light text-black rounded p-4 mt-3 w-50">
+                    <div className='container-fluid bg-light text-black rounded p-4 mt-3 w-50'>
                         <h5>Tables</h5>
-                        <ul className="list-group mb-3">
+                        <ul className='list-group mb-3'>
                             <li 
-                                className="list-group-item" 
+                                className='list-group-item' 
                                 onMouseEnter={() => handleTableHover('Users')} 
                                 onMouseLeave={handleTableLeave}
                             >
                                 Users
                                 {hoveredTable === 'Users' && (
-                                    <div className="popout row">
+                                    <div className='popout row'>
                                         <p><strong>UserID</strong> (int): Primary key</p>
                                         <p><strong>Email</strong> (string): Used for login</p>
                                         <p><strong>Password</strong> (string): Used for login</p>
@@ -77,13 +76,13 @@ const Settings = () => {
                                 )}
                             </li>
                             <li 
-                                className="list-group-item" 
+                                className='list-group-item' 
                                 onMouseEnter={() => handleTableHover('Tasks')} 
                                 onMouseLeave={handleTableLeave}
                             >
                                 Tasks
                                 {hoveredTable === 'Tasks' && (
-                                    <div className="popout row">
+                                    <div className='popout row'>
                                         <p><strong>TaskID</strong> (int): Primary key</p>
                                         <p><strong>JobID</strong> (int): Foreign key</p>
                                         <p><strong>Active</strong> (bit): Active tasks are shown to users</p>
@@ -93,13 +92,13 @@ const Settings = () => {
                                 )}
                             </li>
                             <li 
-                                className="list-group-item" 
+                                className='list-group-item' 
                                 onMouseEnter={() => handleTableHover('Jobs')} 
                                 onMouseLeave={handleTableLeave}
                             >
                                 Jobs
                                 {hoveredTable === 'Jobs' && (
-                                    <div className="popout row">
+                                    <div className='popout row'>
                                         <p><strong>JobID</strong> (int): Foreign key</p>
                                         <p><strong>TaskID</strong> (int): Primary + Foreign key</p>
                                         <p><strong>Active</strong> (bit): Active jobs are shown to users</p>
@@ -109,13 +108,13 @@ const Settings = () => {
                                 )}
                             </li>
                             <li 
-                                className="list-group-item" 
+                                className='list-group-item' 
                                 onMouseEnter={() => handleTableHover('UserTasks')} 
                                 onMouseLeave={handleTableLeave}
                             >
                                 UserTasks
                                 {hoveredTable === 'UserTasks' && (
-                                    <div className="popout row">
+                                    <div className='popout row'>
                                         <p><strong>JobID</strong> (int): Foreign key</p>
                                         <p><strong>UserID</strong> (int): Primary + Foreign key</p>
                                         <p><strong>TaskID</strong> (int): Primary + Foreign key</p>
@@ -127,24 +126,24 @@ const Settings = () => {
                                 )}
                             </li>
                             <li 
-                                className="list-group-item" 
+                                className='list-group-item' 
                                 onMouseEnter={() => handleTableHover('ProjectPartsData')} 
                                 onMouseLeave={handleTableLeave}
                             >
                                 ProjectPartsData
                                 {hoveredTable === 'ProjectPartsData' && (
-                                    <div className="popout row">
+                                    <div className='popout row'>
                                         <p><strong>ProjectRoles</strong> (string): Used to categorize task types and populate dropdowns</p>
                                     </div>
                                 )}
                             </li>
                         </ul>
-                        <div className="form-group">
-                            <label htmlFor="settingsTextarea">Your Query</label>
+                        <div className='form-group'>
+                            <label htmlFor='settingsTextarea'>Your Query</label>
                             <textarea 
-                                className="form-control" 
-                                id="settingsTextarea" 
-                                rows="5"
+                                className='form-control' 
+                                id='settingsTextarea' 
+                                rows='5'
                                 value={inputText}
                                 onChange={handleInputChange}
                             ></textarea>
@@ -155,12 +154,12 @@ const Settings = () => {
                         >
                             Submit
                         </button>
-                        {errorMessage && <p className="mt-4 text-danger">{errorMessage}</p>}
+                        {errorMessage && <p className='mt-4 text-danger'>{errorMessage}</p>}
                     </div>
                     {queryResult && (
-                            <div className="mt-4">
+                            <div className='mt-4'>
                                 <h5>Query Results</h5>
-                                <table className="table table-striped table-bordered">
+                                <table className='table table-striped table-bordered'>
                                     <thead>
                                         <tr>
                                             {Object.keys(queryResult[0]).map((key) => (
@@ -169,8 +168,8 @@ const Settings = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {queryResult.map((row, index) => (
-                                            <tr key={index}>
+                                        {queryResult.map((row, idx) => (
+                                            <tr key={idx}>
                                                 {Object.values(row).map((value, i) => (
                                                     <td key={i}>{value}</td>
                                                 ))}

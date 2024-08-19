@@ -1,4 +1,4 @@
-import {getMonth} from './util';
+import {getMonth} from './Components/util';
 import React, { useContext, useEffect, useState } from 'react';
 import Month from './Components/Month'
 import GlobalContext from '../Context/GlobalContext';
@@ -13,9 +13,7 @@ function Timecard(){
     const {id} = useParams();
     useEffect(()=>{
         setCurrentMonth(getMonth(monthIndex));
-    },[monthIndex]);
-    useEffect(()=>{
-        axios.get("https://taskmanager-backend-9oui.onrender.com/getUserTasksData",{
+        axios.get('https://taskmanager-backend-9oui.onrender.com/getUserTasksData',{
             params: {
                 mode: '1',
                 userID: id,
@@ -27,20 +25,19 @@ function Timecard(){
                 
             }
         }).then(res=> {                                         //process the data recieved by the backend response
-            console.log(res.data.recordset);
             setUserEvents(res.data.recordset);
         }).catch(err=> {
             console.log(err)
             console.log(err.message)
         });
-    },[''])
+    },[monthIndex]);
     return(
         <>
             <React.Fragment>
                 {showEventModal && <EventModal/>}
-                <div className="timecard">
-                    <div className="container-fluid vh-100 pt-3 justify-content-center align-items-start bg-dark rounded text-white">
-                        <h2 className="text-white">
+                <div className='timecard'>
+                    <div className='container-fluid vh-100 pt-3 justify-content-center align-items-start bg-dark rounded text-white'>
+                        <h2 className='text-white'>
                             Timecard
                         </h2>
                         <div className= 'container-fluid text-black bg-white rounded'>

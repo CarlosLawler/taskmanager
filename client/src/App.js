@@ -11,7 +11,7 @@ import Settings from './SettingsStuff/Settings';
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className='App'>
         <Routes>
           <Route path='/' element={<Login />}/>
           <Route element={<NavDash />}>

@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import './TaskContainer.css'
-import axios from "axios";
+import axios from 'axios';
 
 export default function TaskContainer({jobID}){
-    const [taskData, setTaskData] = useState(['loading data...', 'loading data...', 'loading data...' ]);
-    const constant = 0;
+    const [taskData, setTaskData] = useState([{TaskName: 'Loading data...'}]);
     useEffect(()=>{
-        //should connect before use and make the second attempt not fail?
-            setTimeout(()=>{
-                axios.get("https://taskmanager-backend-9oui.onrender.com/getTasksData",{
-                    params: {
-                        mode: "1",                                      //Read all Where {active} and {jobID}
-                        taskName: "",                                   //unnessesary
-                        jobID: jobID,                       // select from specific jobID
-                        quotedHours: "",                                //unnessesary
-                        calculatedHours: "",                            //unnessesary
-                        active: 1,                                      //choses the active or inactive 
-                    }
-                }).then(res=> {                                         //process the data recieved by the backend response
-                    setTaskData(res.data.recordset);
-                }).catch(err=> {
-                    console.log(err);
-                    console.log(err.message);
-                });
-            },500)
-    }, [constant]);
+        setTimeout(() => {
+            
+            axios.get('https://taskmanager-backend-9oui.onrender.com/getTasksData',{
+                params: {
+                    mode: '1',                                      //Read all Where {active} and {jobID}
+                    taskName: '',                                   //unnessesary
+                    jobID: jobID,                                   // select from specific jobID
+                    quotedHours: '',                                //unnessesary
+                    calculatedHours: '',                            //unnessesary
+                    active: 1,                                      //choses the active or inactive 
+                }
+            }).then(res=> {                                         //process the data recieved by the backend response
+                setTaskData(res.data.recordset);
+            }).catch(err=> {
+                console.log(err);
+                console.log(err.message);
+            });
+        }, 300);
+    }, []);
 
     return(
         <>
-            <div class="task-container">
+            <div className='task-container'>
                 <h5>Tasks:</h5>
-                <ul class="task-list">
-                    {taskData.map((task)=>{
+                <ul className='task-list'>
+                    {/* The question mark makes sure that the data-set is populated before any attempt to map */}
+                    {taskData?.map((task, idx)=>{
                         return(
-                            <li key={task.TaskID} class="task-item">{task.TaskName}</li>
+                            <li key={idx} className='task-item'>{task.TaskName}</li>
                         )
                     })}
                 </ul>
