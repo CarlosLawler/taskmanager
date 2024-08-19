@@ -1,7 +1,7 @@
 import sql from 'mssql';
 
 /*Querys the database based on the following parameters:
-{mode:"", email:"", password:"", firstName: "", lastName: ""} 
+{mode:'', email:'', password:'', firstName: '', lastName: ''} 
 
 @param mode
     a string 0-4 with a specific funtion indication following CRUD operations
@@ -60,21 +60,21 @@ import sql from 'mssql';
         switch(mode){
             
             //following CRUD operation ordering
-            case("0")://Create/Insert new entry
+            case('0')://Create/Insert new entry
                 //to insert new email and password
                 var resultSet = await poolConnection.request().query('Insert INTO UserTasks (UserID, JobID, TaskID, '
                 +'StartTime, EndTime, Report) VALUES (\''+userID+'\',\''+jobID+'\',\''+taskID+'\',\''
                 +startTime+'\',\''+endTime+'\',\''+report+'\')');
             break;
 
-            case("1")://Read
+            case('1')://Read
                 //read all entries of a user
                 var resultSet = await poolConnection.request().query('SELECT UserTasks.JobID, UserTasks.TaskID,'+
                     ' UserTasks.StartTime, UserTasks.EndTime, Tasks.TaskName, Jobs.JobName FROM UserTasks'+
                     ' INNER JOIN Tasks ON UserTasks.TaskID = Tasks.TaskID INNER JOIN Jobs ON UserTasks.JobID = Jobs.JobID WHERE'+
                     ' UserTasks.UserID = \''+userID+'\'');
             break;
-            case("2")://Update
+            case('2')://Update
                 //update to new passord for email
                 var resultSet = await poolConnection.request().query('UPDATE UserTasks SET TaskID = \''
                 +taskID+'\', JobID = \''+jobID+'\', StartTime = \''+startTime+'\', EndTime = \''+endTime
@@ -82,13 +82,13 @@ import sql from 'mssql';
                 + startTime +'\'');
             break;
 
-            case("3")://Delete
+            case('3')://Delete
                 //delete entry
                 var resultSet = await poolConnection.request().query('DELETE FROM UserTasks WHERE JobID = \''+jobID
                     +'\' AND UserID = \''+ userID + '\' AND TaskID = \'' + taskID + '\' AND StartTime = \''+ startTime);
             break;
 
-            case("4")://Read all for a specific Job
+            case('4')://Read all for a specific Job
                 //read all entries of a specific email
                 var resultSet = await poolConnection.request().query('SELECT * FROM UserTasks WHERE JobID = \''+
                     jobID + '\'');
@@ -100,7 +100,7 @@ import sql from 'mssql';
         }
         // close connection only when we're certain application is finished
         poolConnection.close();
-        console.log("connect close in UserTasks");
+        console.log('connect close in UserTasks');
         return resultSet;
     } catch (err) {
         console.error(err.message);
@@ -142,7 +142,7 @@ export async function querySettings(query) {
                 var resultSet = await poolConnection.request().query(query);
         // close connection only when we're certain application is finished
         poolConnection.close();
-        console.log("connect close in settings");
+        console.log('connect close in settings');
         return resultSet;
     } catch (err) {
         console.error(err.message);
