@@ -5,7 +5,7 @@ import axios from 'axios';
 export default function TaskContainer({jobID}){
     const [taskData, setTaskData] = useState([{TaskName: 'Loading data...'}]);
     useEffect(()=>{
-        axios.get('http://localhost:8000/getTasksData',{
+        axios.get('https://taskmanager-backend-9oui.onrender.com/getTasksData',{
             params: {
                 mode: '1',                                      //Read all Where {active} and {jobID}
                 taskName: '',                                   //unnessesary
