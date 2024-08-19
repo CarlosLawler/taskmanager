@@ -5,24 +5,21 @@ import axios from 'axios';
 export default function TaskContainer({jobID}){
     const [taskData, setTaskData] = useState([{TaskName: 'Loading data...'}]);
     useEffect(()=>{
-        setTimeout(() => {
-            
-            axios.get('https://taskmanager-backend-9oui.onrender.com/getTasksData',{
-                params: {
-                    mode: '1',                                      //Read all Where {active} and {jobID}
-                    taskName: '',                                   //unnessesary
-                    jobID: jobID,                                   // select from specific jobID
-                    quotedHours: '',                                //unnessesary
-                    calculatedHours: '',                            //unnessesary
-                    active: 1,                                      //choses the active or inactive 
-                }
-            }).then(res=> {                                         //process the data recieved by the backend response
-                setTaskData(res.data.recordset);
-            }).catch(err=> {
-                console.log(err);
-                console.log(err.message);
-            });
-        }, 300);
+        axios.get('https://taskmanager-backend-9oui.onrender.com/getTasksData',{
+            params: {
+                mode: '1',                                      //Read all Where {active} and {jobID}
+                taskName: '',                                   //unnessesary
+                jobID: jobID,                                   // select from specific jobID
+                quotedHours: '',                                //unnessesary
+                calculatedHours: '',                            //unnessesary
+                active: 1,                                      //choses the active or inactive 
+            }
+        }).then(res=> {                                         //process the data recieved by the backend response
+            setTaskData(res.data.recordset);
+        }).catch(err=> {
+            console.log(err);
+            console.log(err.message);
+        });
     }, []);
 
     return(
