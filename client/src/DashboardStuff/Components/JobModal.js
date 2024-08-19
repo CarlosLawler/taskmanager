@@ -109,15 +109,16 @@ export default function JobModal(){
                       {getButtonText()}
                     </button>
                     <ul className="dropdown-menu w-100 full-width-dropdown" aria-labelledby="dropdownMenuButton1">
-                        {taskData.map((task) => {
+                      {/* The question mark makes sure that the data-set is populated before any attempt to map */}
+                      {taskData?.map((task) => {
 
-                            return(
-                                <li key={task.TaskID} className="dropdown-item" value="Action"
-                                onClick={() => taskSelect(task)}>
-                                {task.TaskName}
-                                </li>
-                            )
-                        })}
+                          return(
+                              <li key={task.TaskID} className="dropdown-item" value="Action"
+                              onClick={() => taskSelect(task)}>
+                              {task.TaskName}
+                              </li>
+                          )
+                      })}
                     </ul>
                   </div>
                 </div>

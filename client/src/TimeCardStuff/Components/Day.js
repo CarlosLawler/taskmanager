@@ -17,10 +17,11 @@ export default function Day({day}){
                 <p className="day-number">{day.format("DD")}</p>
             </header>
             <div className="event-container">
-                {dayEvents.map((evt, idx) => (
-                <div key={idx} className="event">
-                    {evt.JobName}: {evt.TaskName}
-                </div>
+                {/* The question mark makes sure that the data-set is populated before any attempt to map */}
+                {dayEvents?.map((evt, idx) => (
+                    <div key={idx} className="event">
+                        {evt.JobName}: {evt.TaskName}
+                    </div>
                 ))}
             </div>
         </div>

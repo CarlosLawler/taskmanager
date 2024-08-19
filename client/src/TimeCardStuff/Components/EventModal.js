@@ -126,7 +126,8 @@ export default function EventModal(){
                                             {getJobButtonText()}
                                         </button>
                                         <ul className="dropdown-menu w-100 full-width-dropdown" aria-labelledby="dropdownMenuButton1">
-                                            {jobData.map((job) => {
+                                            {/* The question mark makes sure that the data-set is populated before any attempt to map */}
+                                            {jobData?.map((job) => {
                                                 return(
                                                 <li key={job.JobID} className="dropdown-item" value="Action"
                                                     onClick={() => jobSelect(job)}>
@@ -147,7 +148,8 @@ export default function EventModal(){
                                             {getTaskButtonText()}
                                         </button>
                                         <ul className="dropdown-menu w-100 full-width-dropdown" aria-labelledby="dropdownMenuButton1">
-                                        {taskData.map((task) => {
+                                        {/* The question mark makes sure that the data-set is populated before any attempt to map */}
+                                        {taskData?.map((task) => {
                                             return(
                                                 <li key={task.TaskID} className="dropdown-item" value="Action"
                                                 onClick={() => {isJobSelected && taskSelect(task)}}>

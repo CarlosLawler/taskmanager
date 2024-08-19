@@ -51,7 +51,8 @@ function Dashboard(){
                     </h2>
                 </div>
                 <div className="row pt-2 justify-content-start align-items-start g-2">
-                    {jobData.map((job)=>{
+                    {/* The question mark makes sure that the data-set is populated before any attempt to map */}
+                    {jobData?.map((job)=>{
                         axios.get("http://localhost:8000/getUserTasksData",{
                             params: {
                                 mode: '4',

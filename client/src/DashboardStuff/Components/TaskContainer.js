@@ -31,7 +31,8 @@ export default function TaskContainer({jobID}){
             <div class="task-container">
                 <h5>Tasks:</h5>
                 <ul class="task-list">
-                    {taskData.map((task)=>{
+                    {/* The question mark makes sure that the data-set is populated before any attempt to map */}
+                    {taskData?.map((task)=>{
                         return(
                             <li key={task.TaskID} class="task-item">{task.TaskName}</li>
                         )
