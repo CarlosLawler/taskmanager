@@ -24,7 +24,7 @@ export default function EventModal(){
 
     
     useEffect(()=>{
-        axios.get('https://taskmanager-backend-9oui.onrender.com/getJobsData',{
+        axios.get('http://localhost:8000/getJobsData',{
             params: {
                 mode: '1',                                      //Read all {active}
                 jobName: '',                                    //unnessesary
@@ -53,7 +53,7 @@ export default function EventModal(){
         setIsTaskSelected(false);
 
         setTaskData(['loading data...'])
-            axios.get('https://taskmanager-backend-9oui.onrender.com/getTasksData',{
+            axios.get('http://localhost:8000/getTasksData',{
                 params: {
                     mode: '1',                                      //Read all Where {active} and {jobID}
                     taskName: '',                                   //unnessesary
@@ -85,7 +85,7 @@ export default function EventModal(){
     }
     
     function handleSubmit(){
-        axios.get('https://taskmanager-backend-9oui.onrender.com/getUserTasksData',{
+        axios.get('http://localhost:8000/getUserTasksData',{
             params: {
                 mode: '0',                                                  //insert the following userTask entry
                 userID: id,                                                 //UserID

@@ -24,7 +24,7 @@ function Login(){
         setValidPassword(true);
 
         //send the backend the neccessary data to run the query
-        axios.get('https://taskmanager-backend-9oui.onrender.com/getData',{
+        axios.get('http://localhost:8000/getData',{
             params: {
                 mode: '1',                                      //read single user data
                 email: emailInput,                              //email inputted in form

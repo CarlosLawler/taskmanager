@@ -25,7 +25,7 @@ const Settings = () => {
     };
 
     const handleSubmit = () => {
-        axios.get('https://taskmanager-backend-9oui.onrender.com/settings', {
+        axios.get('http://localhost:8000/settings', {
             params: {
                 query: inputText,
             }
