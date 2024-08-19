@@ -12,6 +12,7 @@ representing a month
 export function getMonth(month = dayjs().month()){
     const year = dayjs().year();
     const firtsDayOfMonth = dayjs(new Date(year, month, 1)).day();
+    console.log(firtsDayOfMonth);
     let currentMonthCount= 0 - firtsDayOfMonth;
     const daysMatrix = new Array(5).fill([]).map(() =>{
         return new Array(7).fill(null).map(() =>{

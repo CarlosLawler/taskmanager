@@ -52,7 +52,7 @@ function Dashboard(){
                 </div>
                 <div className="row pt-2 justify-content-start align-items-start g-2">
                     {/* The question mark makes sure that the data-set is populated before any attempt to map */}
-                    {jobData?.map((job)=>{
+                    {jobData?.map((job, idx)=>{
                         axios.get("http://localhost:8000/getUserTasksData",{
                             params: {
                                 mode: '4',
@@ -67,7 +67,7 @@ function Dashboard(){
                         }).then(res=> {                                         //process the data recieved by the backend response
                             const allHours = res.data.recordset;
                             let calculatedHours = 0;
-                            allHours.forEach((element) => {
+                            allHours?.forEach((element) => {
                                 calculatedHours += element.Hours;
                             });
                             if(job.CalculatedHours === calculatedHours){
@@ -94,7 +94,7 @@ function Dashboard(){
                         {percentage<100 ? percentageString = percentage + '' : percentageString = '100'}
 
                         return (
-                            <div key={job.JobID} className="col-6 col-md-4 col-lg-3" onClick={() => openJobModal(job)}>
+                            <div key={idx} className="col-6 col-md-4 col-lg-3" onClick={() => openJobModal(job)}>
                                 <div className="card text-start text-black bg-secondary">
                                     <img className="card-img-top" src={logo} alt="Title" />
                                     <div className="card-body">

@@ -169,8 +169,8 @@ const Settings = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {queryResult.map((row, index) => (
-                                            <tr key={index}>
+                                        {queryResult.map((row, idx) => (
+                                            <tr key={idx}>
                                                 {Object.values(row).map((value, i) => (
                                                     <td key={i}>{value}</td>
                                                 ))}

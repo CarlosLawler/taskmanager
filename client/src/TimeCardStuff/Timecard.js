@@ -1,4 +1,4 @@
-import {getMonth} from './util';
+import {getMonth} from './Components/util';
 import React, { useContext, useEffect, useState } from 'react';
 import Month from './Components/Month'
 import GlobalContext from '../Context/GlobalContext';
