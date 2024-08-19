@@ -11,7 +11,7 @@ import './Components/Card.css'
 
 function Dashboard(){
     const {name} = useParams();
-    const [jobData, setJobData] = useState(['loading data...', 'loading data...', 'loading data...']);
+    const [jobData, setJobData] = useState([{JobName: 'Loading Jobs...'}]);
     const constant = 0;
     const{showJobModal, setShowJobModal, setJobSelected} = useContext(GlobalContext);
     //FIXME: could use one query at start to populate all necessary data rather than multiple queries throughout. 
@@ -29,6 +29,7 @@ function Dashboard(){
             }
         }).then(res=> {                                         //process the data recieved by the backend response
             setJobData(res.data.recordset);
+            console.log(jobData);
         }).catch(err=> {
             console.log(err);
             console.log(err.message);

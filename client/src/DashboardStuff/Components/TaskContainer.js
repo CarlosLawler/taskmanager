@@ -3,23 +3,26 @@ import './TaskContainer.css'
 import axios from "axios";
 
 export default function TaskContainer({jobID}){
-    const [taskData, setTaskData] = useState(['loading data...', 'loading data...', 'loading data...' ]);
+    const [taskData, setTaskData] = useState([{TaskName: 'Loading data...'}]);
     useEffect(()=>{
-        axios.get("http://localhost:8000/getTasksData",{
-            params: {
-                mode: "1",                                      //Read all Where {active} and {jobID}
-                taskName: "",                                   //unnessesary
-                jobID: jobID,                       // select from specific jobID
-                quotedHours: "",                                //unnessesary
-                calculatedHours: "",                            //unnessesary
-                active: 1,                                      //choses the active or inactive 
-            }
-        }).then(res=> {                                         //process the data recieved by the backend response
-            setTaskData(res.data.recordset);
-        }).catch(err=> {
-            console.log(err);
-            console.log(err.message);
-        });
+        setTimeout(() => {
+            
+            axios.get("http://localhost:8000/getTasksData",{
+                params: {
+                    mode: "1",                                      //Read all Where {active} and {jobID}
+                    taskName: "",                                   //unnessesary
+                    jobID: jobID,                                   // select from specific jobID
+                    quotedHours: "",                                //unnessesary
+                    calculatedHours: "",                            //unnessesary
+                    active: 1,                                      //choses the active or inactive 
+                }
+            }).then(res=> {                                         //process the data recieved by the backend response
+                setTaskData(res.data.recordset);
+            }).catch(err=> {
+                console.log(err);
+                console.log(err.message);
+            });
+        }, 150);
     }, []);
 
     return(
