@@ -24,7 +24,7 @@ export default function JobModal(){
 
     useEffect(()=>{
         //should connect before use and make the second attempt not fail?
-        axios.get('http://localhost:8000/getTasksData',{
+        axios.get('https://taskmanager-backend-9oui.onrender.com/getTasksData',{
             params: {
                 mode: '1',                                      //Read all Where {active} and {jobID}
                 taskName: '',                                   //unnessesary
@@ -65,7 +65,7 @@ export default function JobModal(){
     // const endTime = req.query.endTime;
     // const report = req.query.report;
     function handleSubmit(){
-        axios.get('http://localhost:8000/getUserTasksData',{
+        axios.get('https://taskmanager-backend-9oui.onrender.com/getUserTasksData',{
             params: {
                 mode: '0',                                                  //insert the following userTask entry
                 userID: id,                                                 //UserID
