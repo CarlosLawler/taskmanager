@@ -16,18 +16,6 @@ function Login(){
     const navigate = useNavigate();
     
     //FIXME: do something to improve connectivity at start of app
-    useEffect(()=>{
-        //should connect before use and make the second attempt not fail?
-        axios.get("http://localhost:8000/getData",{
-            params: {
-                mode: "5",                                      //defaulter
-                email: "",                              //email inputted in form
-                password: "",                        //password inputed in form
-                firstName: "",                                  //unnessesary
-                lastName: ""                                    //unnessesary
-            }
-        })
-    });
 
     function handleSubmit(event){
         //resetting conditions at the start of each logiin attempt
