@@ -1,7 +1,7 @@
 import sql from 'mssql';
 
 /*Querys the database based on the following parameters:
-{mode:"", email:"", password:"", firstName: "", lastName: ""} 
+{mode:'', email:'', password:'', firstName: '', lastName: ''} 
 
 @param mode
     a string 0-4 with a specific funtion indication following CRUD operations
@@ -60,29 +60,29 @@ import sql from 'mssql';
         switch(mode){
             
             //following CRUD operation ordering
-            case("0")://Create---> Insert new entry
+            case('0')://Create---> Insert new entry
                 //to insert new email and password
                 var resultSet = await poolConnection.request().query('Insert INTO Jobs (JobName, QuotedHours)'
                 +' VALUES (\''+jobName+'\',\''+quotedHours+'\')');
             break;
 
-            case("1")://Read
+            case('1')://Read
                 //read all entries of a specific email
                 var resultSet = await poolConnection.request().query('SELECT * FROM Jobs WHERE Active = \''+ active + '\'');
             break;
 
-            case("2")://Update
+            case('2')://Update
                 //update to new passord for email
                 var resultSet = await poolConnection.request().query('UPDATE Jobs SET QuotedHours = \''
                 +quotedHours+'\', CalculatedHours = \''+ calculatedHours +'\' WHERE JobName = \''+jobName+'\'');
             break;
 
-            case("3")://Delete
+            case('3')://Delete
                 //delete entry
                 var resultSet = await poolConnection.request().query('DELETE FROM Jobs WHERE JobName = \''+jobName+'\'');
             break;
 
-            case("4")://Read all
+            case('4')://Read all
                 //read all entries of a specific email
                 var resultSet = await poolConnection.request().query('SELECT * FROM Jobs');
             break;
@@ -93,7 +93,7 @@ import sql from 'mssql';
         }
         // close connection only when we're certain application is finished
         poolConnection.close();
-        console.log("connect close Jobs");
+        console.log('connect close Jobs');
         return resultSet;
     } catch (err) {
         console.error(err.message);

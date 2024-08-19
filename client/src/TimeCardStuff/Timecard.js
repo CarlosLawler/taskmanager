@@ -13,7 +13,7 @@ function Timecard(){
     const {id} = useParams();
     useEffect(()=>{
         setCurrentMonth(getMonth(monthIndex));
-        axios.get("http://localhost:8000/getUserTasksData",{
+        axios.get('http://localhost:8000/getUserTasksData',{
             params: {
                 mode: '1',
                 userID: id,
@@ -35,9 +35,9 @@ function Timecard(){
         <>
             <React.Fragment>
                 {showEventModal && <EventModal/>}
-                <div className="timecard">
-                    <div className="container-fluid vh-100 pt-3 justify-content-center align-items-start bg-dark rounded text-white">
-                        <h2 className="text-white">
+                <div className='timecard'>
+                    <div className='container-fluid vh-100 pt-3 justify-content-center align-items-start bg-dark rounded text-white'>
+                        <h2 className='text-white'>
                             Timecard
                         </h2>
                         <div className= 'container-fluid text-black bg-white rounded'>

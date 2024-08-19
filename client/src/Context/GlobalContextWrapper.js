@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import GlobalContext from "./GlobalContext";
-import dayjs from "dayjs";
+import React, { useState } from 'react';
+import GlobalContext from './GlobalContext';
+import dayjs from 'dayjs';
 
 export default function TimecardContextWrapper(props){
     const [monthIndex, setMonthIndex] = useState(dayjs().month());

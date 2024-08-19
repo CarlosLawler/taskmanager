@@ -4,7 +4,7 @@
 
 }
 #eventModal.modal::before{
-    content:"";
+    content:'';
     display: block;
     height: 20%;
 

@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 
 /*Aknowleges the request sent by the front-end and takes the data in the request:
-{mode:"", email:"", password:"", firstName: "", lastName: ""},
+{mode:'', email:'', password:'', firstName: '', lastName: ''},
 and Querys the database returning  a response back to the front end 
 
 @param req.query.mode
@@ -49,7 +49,7 @@ and Querys the database returning  a response back to the front end
         }
     }
 */
-app.get("/getData", async (req,res)=>{
+app.get('/getData', async (req,res)=>{
     //gets parameters from request
     const mode = req.query.mode;
     const email = req.query.email;
@@ -64,7 +64,7 @@ app.get("/getData", async (req,res)=>{
 })
 
 //getting job info
-app.get("/getJobsData", async (req,res)=>{
+app.get('/getJobsData', async (req,res)=>{
     //gets parameters from request
     const mode = req.query.mode;
     const jobName = req.query.jobName;
@@ -80,7 +80,7 @@ app.get("/getJobsData", async (req,res)=>{
 })
 
 //get tasks info
-app.get("/getTasksData", async (req,res)=>{
+app.get('/getTasksData', async (req,res)=>{
     //gets parameters from request
     const mode = req.query.mode;
     const taskName = req.query.taskName;
@@ -97,7 +97,7 @@ app.get("/getTasksData", async (req,res)=>{
 })
 
 //getting User Entries info
-app.get("/getUserTasksData", async (req,res)=>{
+app.get('/getUserTasksData', async (req,res)=>{
     //gets parameters from request
     const mode = req.query.mode;
     const userID = req.query.userID;
@@ -113,7 +113,7 @@ app.get("/getUserTasksData", async (req,res)=>{
     //send back the database response
     res.send(response);
 })
-app.get("/settings", async (req,res)=>{
+app.get('/settings', async (req,res)=>{
     //gets parameters from request
     const query = req.query.query;
 
@@ -125,5 +125,5 @@ app.get("/settings", async (req,res)=>{
 
 //starts listening at port 8000
 app.listen(8000, () => {
-    console.log("Listening...");
+    console.log('Listening...');
 })

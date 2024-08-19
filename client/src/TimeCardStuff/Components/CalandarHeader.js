@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import * as FaIcons from "react-icons/fa6";
-import GlobalContext from "../../Context/GlobalContext";
-import dayjs from "dayjs";
+import React, { useContext } from 'react';
+import * as FaIcons from 'react-icons/fa6';
+import GlobalContext from '../../Context/GlobalContext';
+import dayjs from 'dayjs';
 import './CalandarHeader.css'
 
 export default function CalandarHeader(){
@@ -17,32 +17,32 @@ export default function CalandarHeader(){
         setMonthIndex(monthIndex + 1);
     }
     const daysOfWeek = [
-        "Sun",
-        "Mon",
-        "Tue",
-        "Wed",
-        "Thu",
-        "Fri",
-        "Sat"
+        'Sun',
+        'Mon',
+        'Tue',
+        'Wed',
+        'Thu',
+        'Fri',
+        'Sat'
     ]
     return(
         <>
-      <header className="d-flex justify-content-between align-items-center m-0 p-2 calendar-header">
-        <button className="btn btn-outline-primary btn-sm" onClick={goToToday}>
+      <header className='d-flex justify-content-between align-items-center m-0 p-2 calendar-header'>
+        <button className='btn btn-outline-primary btn-sm' onClick={goToToday}>
           Today
         </button>
-        <FaIcons.FaAngleLeft className="moveMonth" onClick={previousMonth} />
-        <h3 className="calendar-date m-0 text-center">
-          {dayjs(new Date(dayjs().year(), monthIndex)).format("MMM YYYY")}
+        <FaIcons.FaAngleLeft className='moveMonth' onClick={previousMonth} />
+        <h3 className='calendar-date m-0 text-center'>
+          {dayjs(new Date(dayjs().year(), monthIndex)).format('MMM YYYY')}
         </h3>
-        <FaIcons.FaAngleRight className="moveMonth" onClick={nextMonth} />
-        <button className="btn btn-primary btn-sm" onClick={() => setShowEventModal(true)}>
+        <FaIcons.FaAngleRight className='moveMonth' onClick={nextMonth} />
+        <button className='btn btn-primary btn-sm' onClick={() => setShowEventModal(true)}>
           Create
         </button>
       </header>
-      <div className="day-labels">
+      <div className='day-labels'>
         {daysOfWeek.map((day, idx) => (
-          <div className="day-label" key={idx}>
+          <div className='day-label' key={idx}>
             {day}
           </div>
         ))}

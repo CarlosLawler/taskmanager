@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom'
 import './../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import logo from './../images/Simplex-Logo-Short-Transparent-without-background.png'
-import axios from "axios";
+import axios from 'axios';
 import GlobalContext from  './../Context/GlobalContext'
-import JobModal from "./Components/JobModal";
-import TaskContainer from "./Components/TaskContainer";
-import ProgressBar from "./Components/ProgressBar";
+import JobModal from './Components/JobModal';
+import TaskContainer from './Components/TaskContainer';
+import ProgressBar from './Components/ProgressBar';
 import './Components/Card.css'
 
 function Dashboard(){
@@ -18,18 +18,17 @@ function Dashboard(){
     //it would update speed, and potentially cost (query costs)
     useEffect(()=>{
         //should connect before use and make the second attempt not fail?
-        axios.get("http://localhost:8000/getJobsData",{
+        axios.get('http://localhost:8000/getJobsData',{
             params: {
-                mode: "1",                                      //Read all {active}
-                jobName: "",                                    //unnessesary
-                quotedHours: "",                                //unnessesary
-                calculatedHours: "",                            //unnessesary
+                mode: '1',                                      //Read all {active}
+                jobName: '',                                    //unnessesary
+                quotedHours: '',                                //unnessesary
+                calculatedHours: '',                            //unnessesary
                 active: 1,                                      //getting all active
 
             }
         }).then(res=> {                                         //process the data recieved by the backend response
             setJobData(res.data.recordset);
-            console.log(jobData);
         }).catch(err=> {
             console.log(err);
             console.log(err.message);
@@ -44,17 +43,17 @@ function Dashboard(){
     return(
         <>
         {showJobModal && <JobModal/>}
-        <div className="home">
-            <div className="container-fluid vh-100 pt-3 justify-content-center align-items-start bg-dark rounded">
-                <div className="row pt-2 justify-content-start align-items-start g-2">
-                    <h2 className="text-white">
+        <div className='home'>
+            <div className='container-fluid vh-100 pt-3 justify-content-center align-items-start bg-dark rounded'>
+                <div className='row pt-2 justify-content-start align-items-start g-2'>
+                    <h2 className='text-white'>
                         Welcome {name}!
                     </h2>
                 </div>
-                <div className="row pt-2 justify-content-start align-items-start g-2">
+                <div className='row pt-2 justify-content-start align-items-start g-2'>
                     {/* The question mark makes sure that the data-set is populated before any attempt to map */}
                     {jobData?.map((job, idx)=>{
-                        axios.get("http://localhost:8000/getUserTasksData",{
+                        axios.get('http://localhost:8000/getUserTasksData',{
                             params: {
                                 mode: '4',
                                 userID: '',
@@ -73,9 +72,9 @@ function Dashboard(){
                             });
                             if(job.CalculatedHours === calculatedHours){
                             }else{
-                                axios.get("http://localhost:8000/getJobsData",{
+                                axios.get('http://localhost:8000/getJobsData',{
                                     params: {
-                                        mode: "2",                                               //Update Jobs with the JobName
+                                        mode: '2',                                               //Update Jobs with the JobName
                                         jobName: job.JobName,                                    //job to update
                                         quotedHours: job.QuotedHours,                            //quoted hours to update to
                                         calculatedHours: calculatedHours,                        //calculated hours to update to
@@ -95,11 +94,11 @@ function Dashboard(){
                         {percentage<100 ? percentageString = percentage + '' : percentageString = '100'}
 
                         return (
-                            <div key={idx} className="col-6 col-md-4 col-lg-3" onClick={() => openJobModal(job)}>
-                                <div className="card text-start text-black bg-secondary">
-                                    <img className="card-img-top" src={logo} alt="Title" />
-                                    <div className="card-body">
-                                        <h4 className="card-title text-truncate">{job.JobName}</h4>
+                            <div key={idx} className='col-6 col-md-4 col-lg-3' onClick={() => openJobModal(job)}>
+                                <div className='card text-start text-black bg-secondary'>
+                                    <img className='card-img-top' src={logo} alt='Title' />
+                                    <div className='card-body'>
+                                        <h4 className='card-title text-truncate'>{job.JobName}</h4>
                                         <TaskContainer jobID = {job.JobID}/>
                                         <ProgressBar progress = {percentageString}/>
                                     </div>
