@@ -7,9 +7,8 @@ export default function Day({day}){
     const {userEvents} = useContext(GlobalContext);
     const [dayEvents, setDayEvents] = useState([]);
     useEffect(()=>{
-        const events = userEvents.filter(evt => dayjs(evt.StartTime).format("DD-MM-YY") === day.format("DD-MM-YY"));
+        const events = userEvents?.filter(evt => dayjs(evt.StartTime).format("DD-MM-YY") === day.format("DD-MM-YY"));
         setDayEvents(events);
-        console.log(dayEvents.length !== 0 ? day.format("DD-MM-YY")+": "+dayEvents: '');
     },[userEvents])
     return(
         <div className="day">

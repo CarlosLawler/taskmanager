@@ -51,8 +51,6 @@ export default function EventModal(){
         setIsJobSelected(true);
         taskSelected.current = null;
         setIsTaskSelected(false);
-        console.log(jobSelected);
-        console.log(jobSelected.JobID);
 
         setTaskData(['loading data...'])
             axios.get("http://localhost:8000/getTasksData",{

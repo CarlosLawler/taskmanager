@@ -13,8 +13,6 @@ function Timecard(){
     const {id} = useParams();
     useEffect(()=>{
         setCurrentMonth(getMonth(monthIndex));
-    },[monthIndex]);
-    useEffect(()=>{
         axios.get("http://localhost:8000/getUserTasksData",{
             params: {
                 mode: '1',
@@ -27,13 +25,12 @@ function Timecard(){
                 
             }
         }).then(res=> {                                         //process the data recieved by the backend response
-            console.log(res.data.recordset);
             setUserEvents(res.data.recordset);
         }).catch(err=> {
             console.log(err)
             console.log(err.message)
         });
-    },[''])
+    },[monthIndex]);
     return(
         <>
             <React.Fragment>

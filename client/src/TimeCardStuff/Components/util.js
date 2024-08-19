@@ -12,13 +12,22 @@ representing a month
 export function getMonth(month = dayjs().month()){
     const year = dayjs().year();
     const firtsDayOfMonth = dayjs(new Date(year, month, 1)).day();
-    console.log(firtsDayOfMonth);
     let currentMonthCount= 0 - firtsDayOfMonth;
-    const daysMatrix = new Array(5).fill([]).map(() =>{
-        return new Array(7).fill(null).map(() =>{
-            currentMonthCount++;
-            return dayjs(new Date(year, month, currentMonthCount));
+    let daysMatrix = null;
+    if(firtsDayOfMonth==6){
+        daysMatrix = new Array(6).fill([]).map(() =>{
+            return new Array(7).fill(null).map(() =>{
+                currentMonthCount++;
+                return dayjs(new Date(year, month, currentMonthCount));
+            })
         })
-    })
+    }else{
+        daysMatrix = new Array(5).fill([]).map(() =>{
+            return new Array(7).fill(null).map(() =>{
+                currentMonthCount++;
+                return dayjs(new Date(year, month, currentMonthCount));
+            })
+        })
+    }
     return daysMatrix;
 }

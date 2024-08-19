@@ -4,7 +4,6 @@ import axios from "axios";
 
 export default function TaskContainer({jobID}){
     const [taskData, setTaskData] = useState(['loading data...', 'loading data...', 'loading data...' ]);
-    const constant = 0;
     useEffect(()=>{
         axios.get("http://localhost:8000/getTasksData",{
             params: {
@@ -21,7 +20,7 @@ export default function TaskContainer({jobID}){
             console.log(err);
             console.log(err.message);
         });
-    }, [constant]);
+    }, []);
 
     return(
         <>

@@ -67,7 +67,7 @@ function Dashboard(){
                         }).then(res=> {                                         //process the data recieved by the backend response
                             const allHours = res.data.recordset;
                             let calculatedHours = 0;
-                            allHours?.forEach((element) => {
+                            allHours.forEach((element) => {
                                 calculatedHours += element.Hours;
                             });
                             if(job.CalculatedHours === calculatedHours){

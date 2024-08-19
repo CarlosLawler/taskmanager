@@ -33,27 +33,22 @@ function NavDash(){
     const showSidebar = () => setSidebar(!sidebar);
 
     function logout(){
-        console.log("opened logout");
         setIsAdmin(false);
         navigate('/', {replace: true});
     }
     function returnToDash(){
         showSidebar();
-        console.log("opened home");
         navigate('/dashboard/'+id+'/'+name);
     }
     function returnToDashFromLogo(){
-        console.log("opened home from logo");
         navigate('/dashboard/'+id+'/'+name);
     }
     function openTimecard(){
         showSidebar();
-        console.log("opened timecard");
         navigate('/timecard/'+id+'/'+name);
     }
     function openSettings(){
         showSidebar();
-        console.log("opened settings");
         navigate('/settings/'+id+'/'+name);
     }
     return(

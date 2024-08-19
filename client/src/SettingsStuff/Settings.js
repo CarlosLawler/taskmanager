@@ -30,7 +30,6 @@ const Settings = () => {
                 query: inputText,
             }
         }).then(res => {
-            console.log(res.data.recordset);
             if (res.data.recordset.length === 0) {
                 setErrorMessage('No records to display');
                 setQueryResult(null);
